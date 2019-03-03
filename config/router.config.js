@@ -21,7 +21,29 @@ export default [
     Routes: ['src/pages/Authorized'],
     routes: [
       // dashboard
-      { path: '/', redirect: '/dashboard/analysis' },
+      // { path: '/', redirect: '/dashboard/analysis' },
+      {
+        path: '/new',
+        name: 'new1',
+        icon: 'dashboard',
+        routes: [
+          {
+            path: '/new/new1',
+            name: 'new',
+            component: './NewPage',
+          },
+          {
+            path: '/dashboard/monitor',
+            name: 'monitor',
+            component: './Dashboard/Monitor',
+          },
+          {
+            path: '/dashboard/workplace',
+            name: 'workplace',
+            component: './Dashboard/Workplace',
+          },
+        ],
+      },
       {
         path: '/dashboard',
         name: 'dashboard',

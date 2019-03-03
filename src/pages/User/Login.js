@@ -52,7 +52,12 @@ class LoginPage extends Component {
       });
     }
   };
-
+  handleShowTip() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'login/showTip',
+    });
+  }
   changeAutoLogin = e => {
     this.setState({
       autoLogin: e.target.checked,
@@ -61,6 +66,9 @@ class LoginPage extends Component {
 
   renderMessage = content => (
     <Alert style={{ marginBottom: 24 }} message={content} type="error" showIcon />
+  );
+  renderInfoMessage = content => (
+    <Alert style={{ marginBottom: 24 }} message={content} type="info" showIcon />
   );
 
   render() {
@@ -81,9 +89,12 @@ class LoginPage extends Component {
               login.type === 'account' &&
               !submitting &&
               this.renderMessage(formatMessage({ id: 'app.login.message-invalid-credentials' }))}
+            {login.showTip
+              ? this.renderInfoMessage(formatMessage({ id: 'app.login.contact.admin' }))
+              : null}
             <UserName
               name="userName"
-              placeholder={`${formatMessage({ id: 'app.login.userName' })}: admin or user`}
+              placeholder={`${formatMessage({ id: 'app.login.userName' })}`}
               rules={[
                 {
                   required: true,
@@ -93,7 +104,7 @@ class LoginPage extends Component {
             />
             <Password
               name="password"
-              placeholder={`${formatMessage({ id: 'app.login.password' })}: ant.design`}
+              placeholder={`${formatMessage({ id: 'app.login.password' })}`}
               rules={[
                 {
                   required: true,
@@ -106,7 +117,7 @@ class LoginPage extends Component {
               }}
             />
           </Tab>
-          <Tab key="mobile" tab={formatMessage({ id: 'app.login.tab-login-mobile' })}>
+          {/* <Tab key="mobile" tab={formatMessage({ id: 'app.login.tab-login-mobile' })}>
             {login.status === 'error' &&
               login.type === 'mobile' &&
               !submitting &&
@@ -141,12 +152,12 @@ class LoginPage extends Component {
                 },
               ]}
             />
-          </Tab>
+          </Tab> */}
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
               <FormattedMessage id="app.login.remember-me" />
             </Checkbox>
-            <a style={{ float: 'right' }} href="">
+            <a style={{ float: 'right' }} onClick={() => this.handleShowTip()}>
               <FormattedMessage id="app.login.forgot-password" />
             </a>
           </div>
@@ -154,10 +165,10 @@ class LoginPage extends Component {
             <FormattedMessage id="app.login.login" />
           </Submit>
           <div className={styles.other}>
-            <FormattedMessage id="app.login.sign-in-with" />
+            {/* <FormattedMessage id="app.login.sign-in-with" />
             <Icon type="alipay-circle" className={styles.icon} theme="outlined" />
             <Icon type="taobao-circle" className={styles.icon} theme="outlined" />
-            <Icon type="weibo-circle" className={styles.icon} theme="outlined" />
+            <Icon type="weibo-circle" className={styles.icon} theme="outlined" /> */}
             <Link className={styles.register} to="/user/register">
               <FormattedMessage id="app.login.signup" />
             </Link>

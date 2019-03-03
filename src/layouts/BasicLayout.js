@@ -13,7 +13,8 @@ import PageLoading from '@/components/PageLoading';
 import SiderMenu from '@/components/SiderMenu';
 import getPageTitle from '@/utils/getPageTitle';
 import styles from './BasicLayout.less';
-
+import router from 'umi/router';
+import Authorized from '@/utils/Authorized';
 // lazy load SettingDrawer
 const SettingDrawer = React.lazy(() => import('@/components/SettingDrawer'));
 
@@ -43,8 +44,16 @@ const query = {
     minWidth: 1600,
   },
 };
-
 class BasicLayout extends React.Component {
+  // 判断是否登陆，如果没登陆就退回登录页
+  shouldComponentUpdate() {
+    if (!this.props.loginCheck) {
+      router.push('/user');
+    } else {
+      return true;
+    }
+  }
+
   componentDidMount() {
     const {
       dispatch,
@@ -160,11 +169,12 @@ class BasicLayout extends React.Component {
   }
 }
 
-export default connect(({ global, setting, menu: menuModel }) => ({
+export default connect(({ global, setting, menu: menuModel, login }) => ({
   collapsed: global.collapsed,
   layout: setting.layout,
   menuData: menuModel.menuData,
   breadcrumbNameMap: menuModel.breadcrumbNameMap,
+  loginCheck: login.status,
   ...setting,
 }))(props => (
   <Media query="(max-width: 599px)">

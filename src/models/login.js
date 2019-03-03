@@ -10,11 +10,13 @@ export default {
 
   state: {
     status: undefined,
+    showTip: false,
   },
 
   effects: {
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
+      console.log('logineffect');
+      const response = yield call(fakeAccountLogin, payload); //从后端拿数据的时候就设置权限的字段
       yield put({
         type: 'changeLoginStatus',
         payload: response,
@@ -67,11 +69,18 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      setAuthority(payload.currentAuthority); //设置当前用户的权限
       return {
         ...state,
         status: payload.status,
         type: payload.type,
+      };
+    },
+    showTip(state) {
+      console.log('tessss');
+      return {
+        ...state,
+        showTip: true,
       };
     },
   },

@@ -249,7 +249,7 @@ class Register extends Component {
               />
             )}
           </FormItem>
-          <FormItem>
+          {/* <FormItem>
             <InputGroup compact>
               <Select
                 size="large"
@@ -310,7 +310,7 @@ class Register extends Component {
                 </Button>
               </Col>
             </Row>
-          </FormItem>
+          </FormItem> */}
           <FormItem>
             <Button
               size="large"

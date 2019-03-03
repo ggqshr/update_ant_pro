@@ -15,7 +15,7 @@ export function getAuthority(str) {
   }
   return authority || ['admin'];
 }
-
+//重新设置权限
 export function setAuthority(authority) {
   const proAuthority = typeof authority === 'string' ? [authority] : authority;
   return localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority));
