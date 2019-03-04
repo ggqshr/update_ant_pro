@@ -9,36 +9,42 @@ import { MiniArea } from '@/components/Charts';
 
 const columns = [
   {
-    title: <FormattedMessage id="app.analysis.table.rank" defaultMessage="Rank" />,
+    title: '时间',
     dataIndex: 'index',
     key: 'index',
   },
   {
     title: (
-      <FormattedMessage id="app.analysis.table.search-keyword" defaultMessage="Search keyword" />
+     "浏览量PV"
     ),
     dataIndex: 'keyword',
     key: 'keyword',
-    render: text => <a href="/">{text}</a>,
   },
   {
-    title: <FormattedMessage id="app.analysis.table.users" defaultMessage="Users" />,
+    title: '独立用户UV',
     dataIndex: 'count',
     key: 'count',
-    sorter: (a, b) => a.count - b.count,
     className: styles.alignRight,
   },
   {
-    title: <FormattedMessage id="app.analysis.table.weekly-range" defaultMessage="Weekly Range" />,
+    title: '访问次数VV',
     dataIndex: 'range',
     key: 'range',
-    sorter: (a, b) => a.range - b.range,
-    render: (text, record) => (
-      <Trend flag={record.status === 1 ? 'down' : 'up'}>
-        <span style={{ marginRight: 4 }}>{text}%</span>
-      </Trend>
-    ),
-    align: 'right',
+  },
+  {
+    title: '独立IP',
+    dataIndex: 'keyword',
+    key: 'keyword1',
+  },
+  {
+    title: '跳出率',
+    dataIndex: 'keyword',
+    key: 'keyword2',
+  },
+  {
+    title: '平均在线时长',
+    dataIndex: 'keyword',
+    key: 'keyword3',
   },
 ];
 
@@ -47,12 +53,12 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
     loading={loading}
     bordered={false}
     title={
-      <FormattedMessage id="app.analysis.online-top-search" defaultMessage="Online Top Search" />
+      "详细数据"
     }
     extra={dropdownGroup}
     style={{ marginTop: 24 }}
   >
-    <Row gutter={68}>
+    {/* <Row gutter={68}>
       <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
         <NumberInfo
           subTitle={
@@ -94,7 +100,7 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
         />
         <MiniArea line height={45} data={visitData2} />
       </Col>
-    </Row>
+    </Row> */}
     <Table
       rowKey={record => record.index}
       size="small"
@@ -102,7 +108,7 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
       dataSource={searchData}
       pagination={{
         style: { marginBottom: 0 },
-        pageSize: 5,
+        pageSize: 8,
       }}
     />
   </Card>

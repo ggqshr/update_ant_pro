@@ -31,7 +31,7 @@ for (let i = 0; i < 12; i += 1) {
 const searchData = [];
 for (let i = 0; i < 50; i += 1) {
   searchData.push({
-    index: i + 1,
+    index: i,
     keyword: `搜索关键词-${i}`,
     count: Math.floor(Math.random() * 1000),
     range: Math.floor(Math.random() * 100),

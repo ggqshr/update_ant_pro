@@ -106,16 +106,6 @@ class Analysis extends Component {
     });
   };
 
-  handleRangePickerChange = rangePickerValue => {
-    const { dispatch } = this.props;
-    this.setState({
-      rangePickerValue,
-    });
-
-    dispatch({
-      type: 'chart/fetchSalesData',
-    });
-  };
 
   selectDate = type => {
     const { dispatch } = this.props;
@@ -190,7 +180,6 @@ class Analysis extends Component {
             // rangePickerValue={rangePickerValue}
             // salesData={salesData}
             isActive={this.isActive}
-            // handleRangePickerChange={this.handleRangePickerChange}
             loading={loading}
             // selectDate={this.selectDate}
             // echart的数据
@@ -200,7 +189,7 @@ class Analysis extends Component {
         </Suspense>
         <div className={styles.twoColLayout}>
           <Row gutter={24}>
-            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+            <Col xl={24} lg={24} md={24} sm={24} xs={24}>
               <Suspense fallback={null}>
                 <TopSearch
                   loading={loading}
@@ -211,7 +200,7 @@ class Analysis extends Component {
                 />
               </Suspense>
             </Col>
-            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+            {/* <Col xl={12} lg={24} md={24} sm={24} xs={24}>
               <Suspense fallback={null}>
                 <ProportionSales
                   dropdownGroup={dropdownGroup}
@@ -221,7 +210,7 @@ class Analysis extends Component {
                   handleChangeSalesType={this.handleChangeSalesType}
                 />
               </Suspense>
-            </Col>
+            </Col> */}
           </Row>
         </div>
         <Suspense fallback={null}>

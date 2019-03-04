@@ -104,7 +104,7 @@ const SalesCard = memo(
             </Row>
           </TabPane>
 
-          <TabPane tab={'访问次数（W）'} key="w">
+          <TabPane tab={'访问次数（VV）'} key="w">
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
