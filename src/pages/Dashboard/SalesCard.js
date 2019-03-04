@@ -18,7 +18,16 @@ for (let i = 0; i < 7; i += 1) {
 }
 
 const SalesCard = memo(
-  ({ rangePickerValue, salesData, isActive, handleRangePickerChange, loading, selectDate, pvOptions, uvOptions }) => (
+  ({
+    rangePickerValue,
+    salesData,
+    isActive,
+    handleRangePickerChange,
+    loading,
+    selectDate,
+    pvOptions,
+    uvOptions,
+  }) => (
     <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
       <div className={styles.salesCard}>
         <Tabs
@@ -50,10 +59,7 @@ const SalesCard = memo(
           tabBarStyle={{ marginBottom: 24 }}
         >
           {/* 销售tab */}
-          <TabPane
-            tab={"浏览量(PV)"}
-            key="sales"
-          >
+          <TabPane tab={'浏览量(PV)'} key="sales">
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
@@ -63,10 +69,7 @@ const SalesCard = memo(
               </Col>
             </Row>
           </TabPane>
-          <TabPane
-            tab={"独立用户(UV)"}
-            key="views"
-          >
+          <TabPane tab={'独立用户(UV)'} key="views">
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
@@ -101,10 +104,7 @@ const SalesCard = memo(
             </Row>
           </TabPane>
 
-          <TabPane
-            tab={"访问次数（W）"}
-            key="w"
-          >
+          <TabPane tab={'访问次数（W）'} key="w">
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
@@ -115,10 +115,7 @@ const SalesCard = memo(
             </Row>
           </TabPane>
 
-          <TabPane
-            tab={"独立IP"}
-            key="IP"
-          >
+          <TabPane tab={'独立IP'} key="IP">
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
@@ -129,10 +126,7 @@ const SalesCard = memo(
             </Row>
           </TabPane>
 
-          <TabPane
-            tab={"跳出率"}
-            key="jump"
-          >
+          <TabPane tab={'跳出率'} key="jump">
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
@@ -143,10 +137,7 @@ const SalesCard = memo(
             </Row>
           </TabPane>
 
-          <TabPane
-            tab={"平均在线时长"}
-            key="averageTime"
-          >
+          <TabPane tab={'平均在线时长'} key="averageTime">
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>

@@ -26,44 +26,56 @@ class Analysis extends Component {
   getPvOption = () => {
     return {
       legend: {
-        data: ['今天', '昨天', '7天前', '30天前']
+        data: ['今天', '昨天', '7天前', '30天前'],
       },
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00']
+        data: [
+          '00:00',
+          '02:00',
+          '04:00',
+          '06:00',
+          '08:00',
+          '10:00',
+          '12:00',
+          '14:00',
+          '16:00',
+          '18:00',
+          '20:00',
+          '22:00',
+        ],
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
       },
       tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
       },
       series: [
         {
           name: '今天',
           data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line'
+          type: 'line',
         },
         {
           name: '昨天',
           data: [820, 932, 876, 222, 333, 11, 11],
-          type: 'line'
+          type: 'line',
         },
         {
           name: '7天前',
           data: [820, 932, 876, 222, 333, 11, 101],
-          type: 'line'
+          type: 'line',
         },
         {
           name: '30天前',
           data: [820, 932, 876, 222, 333, 11, 1112],
-          type: 'line'
+          type: 'line',
         },
-
-      ]
+      ],
     };
-  }
+  };
   componentDidMount() {
     const { dispatch } = this.props;
     this.reqRef = requestAnimationFrame(() => {
