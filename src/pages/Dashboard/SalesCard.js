@@ -4,6 +4,7 @@ import { FormattedMessage, formatMessage } from 'umi/locale';
 import numeral from 'numeral';
 import styles from './Analysis.less';
 import { Bar } from '@/components/Charts';
+import ReactEcharts from 'echarts-for-react';
 
 const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
@@ -17,14 +18,15 @@ for (let i = 0; i < 7; i += 1) {
 }
 
 const SalesCard = memo(
-  ({ rangePickerValue, salesData, isActive, handleRangePickerChange, loading, selectDate }) => (
+  ({ rangePickerValue, salesData, isActive, handleRangePickerChange, loading, selectDate, pvOptions, uvOptions }) => (
     <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
       <div className={styles.salesCard}>
         <Tabs
           tabBarExtraContent={
             <div className={styles.salesExtraWrap}>
               <div className={styles.salesExtra}>
-                <a className={isActive('today')} onClick={() => selectDate('today')}>
+                <h3>小时指标</h3>
+                {/* <a className={isActive('today')} onClick={() => selectDate('today')}>
                   <FormattedMessage id="app.analysis.all-day" defaultMessage="All Day" />
                 </a>
                 <a className={isActive('week')} onClick={() => selectDate('week')}>
@@ -35,86 +37,43 @@ const SalesCard = memo(
                 </a>
                 <a className={isActive('year')} onClick={() => selectDate('year')}>
                   <FormattedMessage id="app.analysis.all-year" defaultMessage="All Year" />
-                </a>
+                </a> */}
               </div>
-              <RangePicker
+              {/* <RangePicker
                 value={rangePickerValue}
                 onChange={handleRangePickerChange}
                 style={{ width: 256 }}
-              />
+              /> */}
             </div>
           }
           size="large"
           tabBarStyle={{ marginBottom: 24 }}
         >
+          {/* 销售tab */}
           <TabPane
-            tab={<FormattedMessage id="app.analysis.sales" defaultMessage="Sales" />}
+            tab={"浏览量(PV)"}
             key="sales"
           >
             <Row>
-              <Col xl={16} lg={12} md={12} sm={24} xs={24}>
+              <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
-                  <Bar
-                    height={295}
-                    title={
-                      <FormattedMessage
-                        id="app.analysis.sales-trend"
-                        defaultMessage="Sales Trend"
-                      />
-                    }
-                    data={salesData}
-                  />
-                </div>
-              </Col>
-              <Col xl={8} lg={12} md={12} sm={24} xs={24}>
-                <div className={styles.salesRank}>
-                  <h4 className={styles.rankingTitle}>
-                    <FormattedMessage
-                      id="app.analysis.sales-ranking"
-                      defaultMessage="Sales Ranking"
-                    />
-                  </h4>
-                  <ul className={styles.rankingList}>
-                    {rankingListData.map((item, i) => (
-                      <li key={item.title}>
-                        <span
-                          className={`${styles.rankingItemNumber} ${i < 3 ? styles.active : ''}`}
-                        >
-                          {i + 1}
-                        </span>
-                        <span className={styles.rankingItemTitle} title={item.title}>
-                          {item.title}
-                        </span>
-                        <span className={styles.rankingItemValue}>
-                          {numeral(item.total).format('0,0')}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* 画图位置 */}
+                  <ReactEcharts option={pvOptions} />;
                 </div>
               </Col>
             </Row>
           </TabPane>
           <TabPane
-            tab={<FormattedMessage id="app.analysis.visits" defaultMessage="Visits" />}
+            tab={"独立用户(UV)"}
             key="views"
           >
             <Row>
-              <Col xl={16} lg={12} md={12} sm={24} xs={24}>
+              <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
-                  <Bar
-                    height={292}
-                    title={
-                      <FormattedMessage
-                        id="app.analysis.visits-trend"
-                        defaultMessage="Visits Trend"
-                      />
-                    }
-                    data={salesData}
-                  />
+                  <ReactEcharts option={uvOptions} />;
                 </div>
               </Col>
-              <Col xl={8} lg={12} md={12} sm={24} xs={24}>
+              {/* <Col xl={8} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesRank}>
                   <h4 className={styles.rankingTitle}>
                     <FormattedMessage
@@ -137,6 +96,62 @@ const SalesCard = memo(
                       </li>
                     ))}
                   </ul>
+                </div>
+              </Col> */}
+            </Row>
+          </TabPane>
+
+          <TabPane
+            tab={"访问次数（W）"}
+            key="w"
+          >
+            <Row>
+              <Col xl={24} lg={12} md={12} sm={24} xs={24}>
+                <div className={styles.salesBar}>
+                  {/* 画图位置 */}
+                  <ReactEcharts option={pvOptions} />;
+                </div>
+              </Col>
+            </Row>
+          </TabPane>
+
+          <TabPane
+            tab={"独立IP"}
+            key="IP"
+          >
+            <Row>
+              <Col xl={24} lg={12} md={12} sm={24} xs={24}>
+                <div className={styles.salesBar}>
+                  {/* 画图位置 */}
+                  <ReactEcharts option={pvOptions} />;
+                </div>
+              </Col>
+            </Row>
+          </TabPane>
+
+          <TabPane
+            tab={"跳出率"}
+            key="jump"
+          >
+            <Row>
+              <Col xl={24} lg={12} md={12} sm={24} xs={24}>
+                <div className={styles.salesBar}>
+                  {/* 画图位置 */}
+                  <ReactEcharts option={pvOptions} />;
+                </div>
+              </Col>
+            </Row>
+          </TabPane>
+
+          <TabPane
+            tab={"平均在线时长"}
+            key="averageTime"
+          >
+            <Row>
+              <Col xl={24} lg={12} md={12} sm={24} xs={24}>
+                <div className={styles.salesBar}>
+                  {/* 画图位置 */}
+                  <ReactEcharts option={pvOptions} />;
                 </div>
               </Col>
             </Row>
