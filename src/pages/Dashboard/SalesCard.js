@@ -27,6 +27,8 @@ const SalesCard = memo(
     selectDate,
     pvOptions,
     uvOptions,
+    ipOptions,
+    vvOptions,
   }) => (
     <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
       <div className={styles.salesCard}>
@@ -64,7 +66,7 @@ const SalesCard = memo(
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
                   {/* 画图位置 */}
-                  <ReactEcharts option={pvOptions} />;
+                  <ReactEcharts option={pvOptions()} />;
                 </div>
               </Col>
             </Row>
@@ -73,7 +75,7 @@ const SalesCard = memo(
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
-                  <ReactEcharts option={uvOptions} />;
+                  <ReactEcharts option={uvOptions()} />;
                 </div>
               </Col>
               {/* <Col xl={8} lg={12} md={12} sm={24} xs={24}>
@@ -109,7 +111,7 @@ const SalesCard = memo(
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
                   {/* 画图位置 */}
-                  <ReactEcharts option={pvOptions} />;
+                  <ReactEcharts option={vvOptions()} />;
                 </div>
               </Col>
             </Row>
@@ -120,7 +122,7 @@ const SalesCard = memo(
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
                   {/* 画图位置 */}
-                  <ReactEcharts option={pvOptions} />;
+                  <ReactEcharts option={ipOptions()} />;
                 </div>
               </Col>
             </Row>

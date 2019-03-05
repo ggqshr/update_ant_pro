@@ -16,7 +16,7 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 };
 
-const IntroduceRow = memo(({ loading, visitData }) => (
+const IntroduceRow = memo(({ loading, totaldata }) => (
   <Row gutter={24}>
     <Col {...topColResponsiveProps}>
       <ChartCard
@@ -30,7 +30,7 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         //   // </Tooltip>
         // }
         loading={loading}
-        total={() => 126560}
+        total={totaldata.pV}
         footer={
           <Field
           // label={'日访问量'}
@@ -62,7 +62,7 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         //     <Icon type="info-circle-o" />
         //   </Tooltip>
         // }
-        total={numeral(8846).format('0,0')}
+        total={totaldata.uV}
         footer={
           <Field
           // label={<FormattedMessage id="app.analysis.day-visits" defaultMessage="Daily Visits" />}
@@ -94,7 +94,7 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         //     <Icon type="info-circle-o" />
         //   </Tooltip>
         // }
-        total={numeral(6560).format('0,0')}
+        total={totaldata.vV}
         footer={
           <Field
           // label={
@@ -131,7 +131,7 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         //     <Icon type="info-circle-o" />
         //   </Tooltip>
         // }
-        total="78"
+        total={totaldata.iP}
         footer={
           <div style={{ whiteSpace: 'nowrap', overflow: 'hidden' }}>
             <Trend style={{ marginRight: 16 }}>

@@ -15,7 +15,7 @@ const OfflineData = React.lazy(() => import('./OfflineData'));
 
 @connect(({ chart, loading }) => ({
   chart,
-  loading: loading.effects['chart/fetch'],
+  loading: loading,
 }))
 class Analysis extends Component {
   state = {
@@ -23,7 +23,8 @@ class Analysis extends Component {
     currentTabKey: '',
     rangePickerValue: getTimeDistance('year'),
   };
-  getPvOption = () => {
+  getPvOption = (todayData, yestodayData, sevenData, monthData) => {
+    console.log("option")
     return {
       legend: {
         data: ['今天', '昨天', '7天前', '30天前'],
@@ -33,17 +34,29 @@ class Analysis extends Component {
         boundaryGap: false,
         data: [
           '00:00',
+          '01:00',
           '02:00',
+          '03:00',
           '04:00',
+          '05:00',
           '06:00',
+          '07:00',
           '08:00',
+          '09:00',
           '10:00',
+          '11:00',
           '12:00',
+          '13:00',
           '14:00',
+          '15:00',
           '16:00',
+          '17:00',
           '18:00',
+          '19:00',
           '20:00',
+          '21:00',
           '22:00',
+          '23:00',
         ],
       },
       yAxis: {
@@ -55,32 +68,42 @@ class Analysis extends Component {
       series: [
         {
           name: '今天',
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          data: todayData,
           type: 'line',
         },
         {
           name: '昨天',
-          data: [820, 932, 876, 222, 333, 11, 11],
+          data: yestodayData,
           type: 'line',
         },
         {
           name: '7天前',
-          data: [820, 932, 876, 222, 333, 11, 101],
+          data: sevenData,
           type: 'line',
         },
         {
           name: '30天前',
-          data: [820, 932, 876, 222, 333, 11, 1112],
+          data: monthData,
           type: 'line',
         },
       ],
     };
   };
+  componentWillMount(){
+    const { dispatch } = this.props;
+    console.log("object")
+    dispatch({
+      type: 'chart/fetchDataPerHour',
+    });
+  }
   componentDidMount() {
     const { dispatch } = this.props;
+    dispatch({
+      type: 'chart/fetchDetailData',
+    });
     this.reqRef = requestAnimationFrame(() => {
       dispatch({
-        type: 'chart/fetch',
+        type: 'chart/fetchTotalData',
       });
     });
   }
@@ -94,12 +117,7 @@ class Analysis extends Component {
     clearTimeout(this.timeoutId);
   }
 
-  handleChangeSalesType = e => {
-    this.setState({
-      salesType: e.target.value,
-    });
-  };
-
+  //切换tab
   handleTabChange = key => {
     this.setState({
       currentTabKey: key,
@@ -137,9 +155,9 @@ class Analysis extends Component {
     const { rangePickerValue, salesType, currentTabKey } = this.state;
     const { chart, loading } = this.props;
     const {
-      visitData,
-      visitData2,
-      salesData,
+      totaldata,
+      detaildata,
+      dataperhour,
       searchData,
       offlineData,
       offlineChartData,
@@ -167,24 +185,48 @@ class Analysis extends Component {
         </Dropdown>
       </span>
     );
-
     const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name);
-
     return (
       <GridContent>
         <Suspense fallback={<PageLoading />}>
-          <IntroduceRow loading={loading} visitData={visitData} />
+          <IntroduceRow loading={loading.effects['chart/fetchTotalData']} totaldata={totaldata} />
         </Suspense>
         <Suspense fallback={null}>
           <SalesCard
             // rangePickerValue={rangePickerValue}
             // salesData={salesData}
             isActive={this.isActive}
-            loading={loading}
+            loading={loading.effects["chart/fetchDataPerHour"]}
             // selectDate={this.selectDate}
             // echart的数据
-            pvOptions={this.getPvOption()}
-            uvOptions={this.getPvOption()}
+            pvOptions={()=>this.getPvOption(
+              dataperhour.today.pvData,
+              dataperhour.yestoday.pvData,
+              dataperhour.beforseven.pvData,
+              dataperhour.beformonth.pvData
+            )}
+            uvOptions={()=>this.getPvOption(
+              dataperhour.today.uvData,
+              dataperhour.yestoday.uvData,
+              dataperhour.beforseven.uvData,
+              dataperhour.beformonth.uvData
+            )}
+            ipOptions={
+              ()=>this.getPvOption(
+                dataperhour.today.ipData,
+                dataperhour.yestoday.ipData,
+                dataperhour.beforseven.ipData,
+                dataperhour.beformonth.ipData
+              )
+            }
+            vvOptions={
+              ()=>this.getPvOption(
+                dataperhour.today.vvData,
+                dataperhour.yestoday.vvData,
+                dataperhour.beforseven.vvData,
+                dataperhour.beformonth.vvData
+              )
+            }
           />
         </Suspense>
         <div className={styles.twoColLayout}>
@@ -192,10 +234,8 @@ class Analysis extends Component {
             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
               <Suspense fallback={null}>
                 <TopSearch
-                  loading={loading}
-                  visitData2={visitData2}
-                  selectDate={this.selectDate}
-                  searchData={searchData}
+                  loading={loading.effects["chart/fetchDetailData"]}
+                  detaildata={detaildata}
                   dropdownGroup={dropdownGroup}
                 />
               </Suspense>
