@@ -24,7 +24,7 @@ class Analysis extends Component {
     rangePickerValue: getTimeDistance('year'),
   };
   getPvOption = (todayData, yestodayData, sevenData, monthData) => {
-    console.log("option")
+    console.log('option');
     return {
       legend: {
         data: ['今天', '昨天', '7天前', '30天前'],
@@ -89,9 +89,9 @@ class Analysis extends Component {
       ],
     };
   };
-  componentWillMount(){
+  componentWillMount() {
     const { dispatch } = this.props;
-    console.log("object")
+    console.log('object');
     dispatch({
       type: 'chart/fetchDataPerHour',
     });
@@ -123,7 +123,6 @@ class Analysis extends Component {
       currentTabKey: key,
     });
   };
-
 
   selectDate = type => {
     const { dispatch } = this.props;
@@ -196,31 +195,35 @@ class Analysis extends Component {
             // rangePickerValue={rangePickerValue}
             // salesData={salesData}
             isActive={this.isActive}
-            loading={loading.effects["chart/fetchDataPerHour"]}
+            loading={loading.effects['chart/fetchDataPerHour']}
             // selectDate={this.selectDate}
             // echart的数据
-            pvOptions={()=>this.getPvOption(
-              dataperhour.today.pvData,
-              dataperhour.yestoday.pvData,
-              dataperhour.beforseven.pvData,
-              dataperhour.beformonth.pvData
-            )}
-            uvOptions={()=>this.getPvOption(
-              dataperhour.today.uvData,
-              dataperhour.yestoday.uvData,
-              dataperhour.beforseven.uvData,
-              dataperhour.beformonth.uvData
-            )}
-            ipOptions={
-              ()=>this.getPvOption(
+            pvOptions={() =>
+              this.getPvOption(
+                dataperhour.today.pvData,
+                dataperhour.yestoday.pvData,
+                dataperhour.beforseven.pvData,
+                dataperhour.beformonth.pvData
+              )
+            }
+            uvOptions={() =>
+              this.getPvOption(
+                dataperhour.today.uvData,
+                dataperhour.yestoday.uvData,
+                dataperhour.beforseven.uvData,
+                dataperhour.beformonth.uvData
+              )
+            }
+            ipOptions={() =>
+              this.getPvOption(
                 dataperhour.today.ipData,
                 dataperhour.yestoday.ipData,
                 dataperhour.beforseven.ipData,
                 dataperhour.beformonth.ipData
               )
             }
-            vvOptions={
-              ()=>this.getPvOption(
+            vvOptions={() =>
+              this.getPvOption(
                 dataperhour.today.vvData,
                 dataperhour.yestoday.vvData,
                 dataperhour.beforseven.vvData,
@@ -234,7 +237,7 @@ class Analysis extends Component {
             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
               <Suspense fallback={null}>
                 <TopSearch
-                  loading={loading.effects["chart/fetchDetailData"]}
+                  loading={loading.effects['chart/fetchDetailData']}
                   detaildata={detaildata}
                   dropdownGroup={dropdownGroup}
                 />

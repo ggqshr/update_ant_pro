@@ -125,14 +125,14 @@ export async function getFakeCaptcha(mobile) {
   return request(`/api/captcha?mobile=${mobile}`);
 }
 
-export async function getTotalDate(){
-  return request("/api/totaldata");
+export async function getTotalDate() {
+  return request('/api/totaldata');
 }
 
-export async function getDetailData(){
-  return request("/api/detaildata");
+export async function getDetailData() {
+  return request('/api/detaildata');
 }
 
-export async function getDataPerHour(){
-  return request("/api/dataperhour");
+export async function getDataPerHour() {
+  return request('/api/dataperhour');
 }

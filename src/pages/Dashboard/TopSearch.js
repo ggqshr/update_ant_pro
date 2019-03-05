@@ -14,9 +14,7 @@ const columns = [
     key: 'date',
   },
   {
-    title: (
-     "浏览量PV"
-    ),
+    title: '浏览量PV',
     dataIndex: 'pv',
     key: 'pv',
   },
@@ -52,9 +50,7 @@ const TopSearch = memo(({ loading, detaildata, dropdownGroup }) => (
   <Card
     loading={loading}
     bordered={false}
-    title={
-      "详细数据"
-    }
+    title={'详细数据'}
     extra={dropdownGroup}
     style={{ marginTop: 24 }}
   >
