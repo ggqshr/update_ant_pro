@@ -193,7 +193,7 @@ class Analysis extends Component {
               <Suspense fallback={null}>
                 <TopSearch
                   loading={loading}
-                  visitData2={visitData2}
+                  // visitData2={visitData2}
                   selectDate={this.selectDate}
                   searchData={searchData}
                   dropdownGroup={dropdownGroup}
