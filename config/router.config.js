@@ -60,6 +60,11 @@ export default [
             component: './Dashboard/UserAnalysis',
           },
           {
+            path: '/dashboard/UserPic',
+            name: '用户画像',
+            component: './Dashboard/UserPic',
+          },
+          {
             path: '/dashboard/monitor',
             name: 'monitor',
             component: './Dashboard/Monitor',

@@ -21,7 +21,7 @@ const IntroduceRow = memo(({ loading, userdata }) => (
     <Col {...topColResponsiveProps}>
       <ChartCard
         bordered={false}
-        title={<FormattedMessage id="新增访客" defaultMessage="新增访客" />}
+        title={"新增访客"}
         // action={
         //   // <Tooltip
         //   //   title={<FormattedMessage id="app.analysis.introduce" defaultMessage="Introduce" />}
@@ -54,7 +54,7 @@ const IntroduceRow = memo(({ loading, userdata }) => (
       <ChartCard
         bordered={false}
         loading={loading}
-        title={<FormattedMessage id="活跃用户" defaultMessage="活跃用户" />}
+        title={"活跃用户"}
         // action={
         //   <Tooltip
         //     title={<FormattedMessage id="app.analysis.introduce" defaultMessage="Introduce" />}
