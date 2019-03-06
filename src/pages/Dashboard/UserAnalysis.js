@@ -8,7 +8,7 @@ import PageLoading from '@/components/PageLoading';
 import { AsyncLoadBizCharts } from '@/components/Charts/AsyncLoadBizCharts';
 
 const IntroduceRow = React.lazy(() => import('./UserIntroduceRow'));
-const SalesCard = React.lazy(() => import('./SalesCard'));
+const SalesCard = React.lazy(() => import('./UserSalesCard'));
 const TopSearch = React.lazy(() => import('./TopSearch'));
 const ProportionSales = React.lazy(() => import('./ProportionSales'));
 
@@ -39,7 +39,17 @@ class Analysis extends Component {
       });
     });
   }
+  handleRangePickerChange = rangePickerValue => {
+    const { dispatch } = this.props;
+    console.log(rangePickerValue)
+    this.setState({
+      rangePickerValue,
+    });
 
+    dispatch({
+      type: 'chart/fetchSalesData',
+    });
+  };
   componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch({
@@ -92,10 +102,11 @@ class Analysis extends Component {
         </Suspense>
         <Suspense fallback={null}>
           <SalesCard
-            // rangePickerValue={rangePickerValue}
+            rangePickerValue={rangePickerValue}
             // salesData={salesData}
             isActive={this.isActive}
             loading={pvOption === undefined ? true : false}
+            handleRangePickerChange={this.handleRangePickerChange}
             // selectDate={this.selectDate}
             // echart的数据
             pvOptions={pvOption}

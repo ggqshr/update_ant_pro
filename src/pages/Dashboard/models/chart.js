@@ -5,7 +5,9 @@ import {
   getDataPerHour,
   getOption,
   getUserData,
+  getRateOption,
 } from '@/services/api';
+import axios from 'axios'
 
 export default {
   namespace: 'chart',
@@ -17,6 +19,7 @@ export default {
     pvOption: {},
     vvOption: {},
     uvOption: {},
+    ratedata:{},
     radarData: [],
     loading: false,
     userdata:{},
@@ -59,6 +62,9 @@ export default {
             userdata:res
           }
         })
+    },
+    *fetchRateData(_,{call,put}){
+      const res = yield axios
     }
   },
 

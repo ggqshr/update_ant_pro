@@ -237,3 +237,37 @@ export function getPvOption(todayData, yestodayData, sevenData, monthData) {
 export async function getUserData(){
   return request("/api/userdata")
 }
+
+export function getRateOption(time,newrate,activerate){
+  return {
+    legend: {
+      data: ['新增用户', '活跃用户'],
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: time,
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value} %'
+    },
+    },
+    tooltip: {
+      trigger: 'axis',
+    },
+    series: [
+      {
+        name: '新增用户',
+        data: newrate,
+        type: 'line',
+      },
+      {
+        name: '活跃用户',
+        data: activerate,
+        type: 'line',
+      },
+    ],
+  };
+}
