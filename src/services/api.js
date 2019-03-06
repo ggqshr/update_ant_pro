@@ -134,5 +134,101 @@ export async function getDetailData() {
 }
 
 export async function getDataPerHour() {
-  return request('/api/dataperhour');
+  const res = request('/api/dataperhour');
+  return res;
+}
+
+export function getOption(res) {
+  res = res.dataperhour;
+  const pvOption = getPvOption(
+    res.today.pvData,
+    res.yestoday.pvData,
+    res.beforseven.pvData,
+    res.beformonth.pvData
+  );
+  const uvOption = getPvOption(
+    res.today.uvData,
+    res.yestoday.uvData,
+    res.beforseven.uvData,
+    res.beformonth.uvData
+  );
+  const vvOption = getPvOption(
+    res.today.vvData,
+    res.yestoday.vvData,
+    res.beforseven.vvData,
+    res.beformonth.vvData
+  );
+  const ipOption = getPvOption(
+    res.today.ipData,
+    res.yestoday.ipData,
+    res.beforseven.ipData,
+    res.beformonth.ipData
+  );
+  return { pvOption, uvOption, vvOption, ipOption };
+}
+
+export function getPvOption(todayData, yestodayData, sevenData, monthData) {
+  return {
+    legend: {
+      data: ['今天', '昨天', '7天前', '30天前'],
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: [
+        '00:00',
+        '01:00',
+        '02:00',
+        '03:00',
+        '04:00',
+        '05:00',
+        '06:00',
+        '07:00',
+        '08:00',
+        '09:00',
+        '10:00',
+        '11:00',
+        '12:00',
+        '13:00',
+        '14:00',
+        '15:00',
+        '16:00',
+        '17:00',
+        '18:00',
+        '19:00',
+        '20:00',
+        '21:00',
+        '22:00',
+        '23:00',
+      ],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    tooltip: {
+      trigger: 'axis',
+    },
+    series: [
+      {
+        name: '今天',
+        data: todayData,
+        type: 'line',
+      },
+      {
+        name: '昨天',
+        data: yestodayData,
+        type: 'line',
+      },
+      {
+        name: '7天前',
+        data: sevenData,
+        type: 'line',
+      },
+      {
+        name: '30天前',
+        data: monthData,
+        type: 'line',
+      },
+    ],
+  };
 }

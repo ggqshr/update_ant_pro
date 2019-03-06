@@ -840,6 +840,6 @@ const dataperhour = {
 export default {
   'GET /api/fake_chart_data': getFakeChartData,
   'GET /api/totaldata': totaldata,
-  'Get /api/detaildata': detaildata,
+  'GET /api/detaildata': detaildata,
   'GET /api/dataperhour': dataperhour,
 };

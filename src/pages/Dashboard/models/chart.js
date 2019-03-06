@@ -1,4 +1,10 @@
-import { fakeChartData, getTotalDate, getDetailData, getDataPerHour } from '@/services/api';
+import {
+  fakeChartData,
+  getTotalDate,
+  getDetailData,
+  getDataPerHour,
+  getOption,
+} from '@/services/api';
 
 export default {
   namespace: 'chart',
@@ -6,7 +12,10 @@ export default {
   state: {
     totaldata: {},
     detaildata: [],
-    dataperhour: {},
+    ipOption: {},
+    pvOption: {},
+    vvOption: {},
+    uvOption: {},
     salesData: [],
     searchData: [],
     offlineData: [],
@@ -28,7 +37,6 @@ export default {
     },
     *fetchSalesData(_, { call, put }) {
       const response = yield call(fakeChartData);
-      console.log(response.salesData);
       yield put({
         type: 'save',
         payload: {
@@ -57,7 +65,7 @@ export default {
     *fetchDataPerHour(_, { call, put }) {
       const res = yield call(getDataPerHour);
       yield put({
-        type: 'save',
+        type: 'savaDta',
         payload: {
           dataperhour: res,
         },
@@ -70,6 +78,13 @@ export default {
       return {
         ...state,
         ...payload,
+      };
+    },
+    savaDta(state, { payload }) {
+      const finalData = getOption({ ...payload });
+      return {
+        ...state,
+        ...finalData,
       };
     },
     clear() {
