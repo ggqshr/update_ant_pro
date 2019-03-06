@@ -25,10 +25,8 @@ const SalesCard = memo(
     handleRangePickerChange,
     loading,
     selectDate,
-    pvOptions,
-    uvOptions,
-    ipOptions,
-    vvOptions,
+    rateopt,
+    title,
   }) => (
     <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
       <div className={styles.salesCard}>
@@ -48,12 +46,12 @@ const SalesCard = memo(
           tabBarStyle={{ marginBottom: 24 }}
         >
           {/* 销售tab */}
-          <TabPane tab={'新访客和活跃访客占比'} key="sales">
+          <TabPane tab={title} key="sales">
             <Row>
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
                   {/* 画图位置 */}
-                  <ReactEcharts option={pvOptions} />;
+                  <ReactEcharts option={rateopt} />;
                 </div>
               </Col>
             </Row>

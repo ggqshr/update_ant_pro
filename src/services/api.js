@@ -234,11 +234,27 @@ export function getPvOption(todayData, yestodayData, sevenData, monthData) {
 }
 
 
-export async function getUserData(){
+export async function getUserData() {
   return request("/api/userdata")
 }
 
-export function getRateOption(time,newrate,activerate){
+export async function getRateData(payload) {
+  return request("/api/ratedata", {
+    method: 'POST',
+    body: { "startDate": payload.startDate, "endDate": payload.endDate },
+  }
+  )
+}
+
+export async function getRateData2(payload) {
+  return request("/api/oldandnewdata", {
+    method: 'POST',
+    body: { "startDate": payload.startDate, "endDate": payload.endDate },
+  }
+  )
+}
+
+export function getRateOption(data) {
   return {
     legend: {
       data: ['新增用户', '活跃用户'],
@@ -246,28 +262,46 @@ export function getRateOption(time,newrate,activerate){
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: time,
+      data: data.rangdates,
     },
     yAxis: {
       type: 'value',
       axisLabel: {
         formatter: '{value} %'
-    },
+      },
     },
     tooltip: {
-      trigger: 'axis',
+      trigger: 'axis'
     },
     series: [
       {
         name: '新增用户',
-        data: newrate,
+        data: data.newrate,
         type: 'line',
       },
       {
         name: '活跃用户',
-        data: activerate,
+        data: data.activerate,
         type: 'line',
       },
     ],
   };
+}
+
+export function getOldAndNewOpt(data) {
+  return {
+    legend: {},
+    tooltip: {},
+    dataset: {
+      source: data
+    },
+    xAxis: { type: 'category' },
+    yAxis: {},
+    // Declare several bar series, each will be mapped
+    // to a column of dataset.source by default.
+    series: [
+      { type: 'bar' },
+      { type: 'bar' },
+    ]
+  }
 }

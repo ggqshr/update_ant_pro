@@ -838,42 +838,43 @@ const dataperhour = {
   },
 };
 
-const userdata ={"newuser":23,"activeuser":33,"silenceuser":2,"totaluser":109}
-const ratedata={
+const userdata = { "newuser": 23, "activeuser": 33, "silenceuser": 2, "totaluser": 109 }
+const ratedata = {
   "rangdates": [
-      "2019-02-25",
-      "2019-02-26",
-      "2019-02-27",
-      "2019-02-28",
-      "2019-03-01",
-      "2019-03-02",
-      "2019-03-03",
-      "2019-03-04",
-      "2019-03-05"
+    "2019-02-25",
+    "2019-02-26",
+    "2019-02-27",
+    "2019-02-28",
+    "2019-03-01",
+    "2019-03-02",
+    "2019-03-03",
+    "2019-03-04",
+    "2019-03-05"
   ],
   "activerate": [
-      "3.9216",
-      "0",
-      "0",
-      "1.5625",
-      "0",
-      "0",
-      "0",
-      "5.6250",
-      "30.2752"
+    "3.9216",
+    "0",
+    "0",
+    "1.5625",
+    "0",
+    "0",
+    "0",
+    "5.6250",
+    "30.2752"
   ],
   "newrate": [
-      "7.0588",
-      "0",
-      "0",
-      "2.3438",
-      "0",
-      "0",
-      "0",
-      "5.3125",
-      "21.1009"
+    "7.0588",
+    "0",
+    "0",
+    "2.3438",
+    "0",
+    "0",
+    "0",
+    "5.3125",
+    "21.1009"
   ]
 }
+const oldAndNewData = [["user", "新会员", "老会员"], ["2019-02-25", 9, 255], ["2019-02-28", 3, 128], ["2019-03-04", 6, 320], ["2019-03-05", 4, 109]]
 
 export default {
   'GET /api/fake_chart_data': getFakeChartData,
@@ -881,5 +882,6 @@ export default {
   'GET /api/detaildata': detaildata,
   'GET /api/dataperhour': dataperhour,
   "GET /api/userdata": userdata,
-  "POST /api/ratedata":
+  "POST /api/ratedata": ratedata,
+  "POST /api/oldandnewdata": oldAndNewData,
 };
