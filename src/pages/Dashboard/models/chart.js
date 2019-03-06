@@ -21,11 +21,11 @@ export default {
     pvOption: {},
     vvOption: {},
     uvOption: {},
-    rateopt:{},
+    rateopt: {},
     radarData: [],
     loading: false,
-    userdata:{},
-    rateopt2:{},
+    userdata: {},
+    rateopt2: {},
   },
 
   effects: {
@@ -56,30 +56,30 @@ export default {
         },
       });
     },
-    *fetchUserData(_,{call,put}){
-        const res = yield call(getUserData)
-        yield put({
-          type:'save',
-          payload:{
-            userdata:res
-          }
-        })
-    },
-    *fetchRateData({payload},{call,put}){
-      const res = yield call(getRateData,payload);
+    *fetchUserData(_, { call, put }) {
+      const res = yield call(getUserData)
       yield put({
-        type:"saveRate",
-        payload:{
-          ratedata:res,
+        type: 'save',
+        payload: {
+          userdata: res
         }
       })
     },
-    *fetchRateData2({payload},{call,put}){
-      const res = yield call(getRateData2,payload);
+    *fetchRateData({ payload }, { call, put }) {
+      const res = yield call(getRateData, payload);
       yield put({
-        type:"saveOldAndNew",
-        payload:{
-          rateopt2:res,
+        type: "saveRate",
+        payload: {
+          ratedata: res,
+        }
+      })
+    },
+    *fetchRateData2({ payload }, { call, put }) {
+      const res = yield call(getRateData2, payload);
+      yield put({
+        type: "saveOldAndNew",
+        payload: {
+          rateopt2: res,
         }
       })
     }
@@ -96,7 +96,7 @@ export default {
       const finalOtp = getRateOption(payload.ratedata)
       return {
         ...state,
-        rateopt:finalOtp
+        rateopt: finalOtp
       };
     },
     savaDta(state, { payload }) {
@@ -111,7 +111,7 @@ export default {
       console.log(finalData)
       return {
         ...state,
-        rateopt2:finalData,
+        rateopt2: finalData,
       };
     },
     clear() {
@@ -122,8 +122,11 @@ export default {
         pvOption: {},
         vvOption: {},
         uvOption: {},
+        rateopt: {},
         radarData: [],
         loading: false,
+        userdata: {},
+        rateopt2: {},
       };
     },
   },
