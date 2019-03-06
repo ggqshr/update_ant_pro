@@ -1,11 +1,21 @@
-import { fakeChartData } from '@/services/api';
+import {
+  fakeChartData,
+  getTotalDate,
+  getDetailData,
+  getDataPerHour,
+  getOption,
+} from '@/services/api';
 
 export default {
   namespace: 'chart',
 
   state: {
-    visitData: [],
-    visitData2: [],
+    totaldata: {},
+    detaildata: [],
+    ipOption: {},
+    pvOption: {},
+    vvOption: {},
+    uvOption: {},
     salesData: [],
     searchData: [],
     offlineData: [],
@@ -34,6 +44,33 @@ export default {
         },
       });
     },
+    *fetchTotalData(_, { call, put }) {
+      const res = yield call(getTotalDate);
+      yield put({
+        type: 'save',
+        payload: {
+          totaldata: res,
+        },
+      });
+    },
+    *fetchDetailData(_, { call, put }) {
+      const res = yield call(getDetailData);
+      yield put({
+        type: 'save',
+        payload: {
+          detaildata: res,
+        },
+      });
+    },
+    *fetchDataPerHour(_, { call, put }) {
+      const res = yield call(getDataPerHour);
+      yield put({
+        type: 'savaDta',
+        payload: {
+          dataperhour: res,
+        },
+      });
+    },
   },
 
   reducers: {
@@ -41,6 +78,13 @@ export default {
       return {
         ...state,
         ...payload,
+      };
+    },
+    savaDta(state, { payload }) {
+      const finalData = getOption({ ...payload });
+      return {
+        ...state,
+        ...finalData,
       };
     },
     clear() {

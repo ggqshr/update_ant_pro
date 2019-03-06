@@ -10,51 +10,47 @@ import { MiniArea } from '@/components/Charts';
 const columns = [
   {
     title: '时间',
-    dataIndex: 'index',
-    key: 'index',
+    dataIndex: 'date',
+    key: 'date',
   },
   {
-    title: (
-     "浏览量PV"
-    ),
-    dataIndex: 'keyword',
-    key: 'keyword',
+    title: '浏览量PV',
+    dataIndex: 'pv',
+    key: 'pv',
   },
   {
     title: '独立用户UV',
-    dataIndex: 'count',
-    key: 'count',
+    dataIndex: 'uv',
+    key: 'uv',
     className: styles.alignRight,
   },
   {
     title: '访问次数VV',
-    dataIndex: 'range',
-    key: 'range',
+    dataIndex: 'vv',
+    key: 'vv',
   },
   {
     title: '独立IP',
-    dataIndex: 'keyword',
-    key: 'keyword1',
+    dataIndex: 'ip',
+    key: 'ip',
   },
   {
     title: '跳出率',
-    dataIndex: 'keyword',
-    key: 'keyword2',
+    dataIndex: 'jumprate',
+    key: 'jumprate',
   },
   {
     title: '平均在线时长',
-    dataIndex: 'keyword',
-    key: 'keyword3',
+    dataIndex: 'avgvisittimes',
+    key: 'avgvisittimes',
   },
 ];
 
-const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
+const TopSearch = memo(({ loading, detaildata, dropdownGroup }) => (
   <Card
     loading={loading}
     bordered={false}
-    title={
-      "详细数据"
-    }
+    title={'详细数据'}
     extra={dropdownGroup}
     style={{ marginTop: 24 }}
   >
@@ -102,10 +98,10 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
       </Col>
     </Row> */}
     <Table
-      rowKey={record => record.index}
+      rowKey={record => record.date}
       size="small"
       columns={columns}
-      dataSource={searchData}
+      dataSource={detaildata}
       pagination={{
         style: { marginBottom: 0 },
         pageSize: 8,
