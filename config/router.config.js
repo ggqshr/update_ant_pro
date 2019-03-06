@@ -55,6 +55,11 @@ export default [
             component: './Dashboard/Analysis',
           },
           {
+            path: '/dashboard/useranalysis',
+            name: '用户分析',
+            component: './Dashboard/UserAnalysis',
+          },
+          {
             path: '/dashboard/monitor',
             name: 'monitor',
             component: './Dashboard/Monitor',

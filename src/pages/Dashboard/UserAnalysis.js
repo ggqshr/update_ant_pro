@@ -7,7 +7,7 @@ import styles from './Analysis.less';
 import PageLoading from '@/components/PageLoading';
 import { AsyncLoadBizCharts } from '@/components/Charts/AsyncLoadBizCharts';
 
-const IntroduceRow = React.lazy(() => import('./IntroduceRow'));
+const IntroduceRow = React.lazy(() => import('./UserIntroduceRow'));
 const SalesCard = React.lazy(() => import('./SalesCard'));
 const TopSearch = React.lazy(() => import('./TopSearch'));
 const ProportionSales = React.lazy(() => import('./ProportionSales'));
@@ -35,7 +35,7 @@ class Analysis extends Component {
     });
     this.reqRef = requestAnimationFrame(() => {
       dispatch({
-        type: 'chart/fetchTotalData',
+        type: 'chart/fetchUserData',
       });
     });
   }
@@ -76,6 +76,7 @@ class Analysis extends Component {
     const { rangePickerValue, salesType, currentTabKey } = this.state;
     const { chart, loading } = this.props;
     const {
+      userdata,
       totaldata,
       detaildata,
       uvOption,
@@ -87,7 +88,7 @@ class Analysis extends Component {
     return (
       <GridContent>
         <Suspense fallback={<PageLoading />}>
-          <IntroduceRow loading={loading.effects['chart/fetchTotalData']} totaldata={totaldata} />
+          <IntroduceRow loading={loading.effects['chart/fetchUserData']} userdata={userdata} />
         </Suspense>
         <Suspense fallback={null}>
           <SalesCard

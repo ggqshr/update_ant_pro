@@ -54,49 +54,6 @@ const TopSearch = memo(({ loading, detaildata, dropdownGroup }) => (
     extra={dropdownGroup}
     style={{ marginTop: 24 }}
   >
-    {/* <Row gutter={68}>
-      <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
-        <NumberInfo
-          subTitle={
-            <span>
-              <FormattedMessage id="app.analysis.search-users" defaultMessage="search users" />
-              <Tooltip
-                title={<FormattedMessage id="app.analysis.introduce" defaultMessage="introduce" />}
-              >
-                <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
-              </Tooltip>
-            </span>
-          }
-          gap={8}
-          total={numeral(12321).format('0,0')}
-          status="up"
-          subTotal={17.1}
-        />
-        <MiniArea line height={45} data={visitData2} />
-      </Col>
-      <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
-        <NumberInfo
-          subTitle={
-            <span>
-              <FormattedMessage
-                id="app.analysis.per-capita-search"
-                defaultMessage="Per Capita Search"
-              />
-              <Tooltip
-                title={<FormattedMessage id="app.analysis.introduce" defaultMessage="introduce" />}
-              >
-                <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
-              </Tooltip>
-            </span>
-          }
-          total={2.7}
-          status="down"
-          subTotal={26.2}
-          gap={8}
-        />
-        <MiniArea line height={45} data={visitData2} />
-      </Col>
-    </Row> */}
     <Table
       rowKey={record => record.date}
       size="small"

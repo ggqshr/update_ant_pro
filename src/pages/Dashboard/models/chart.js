@@ -4,6 +4,7 @@ import {
   getDetailData,
   getDataPerHour,
   getOption,
+  getUserData,
 } from '@/services/api';
 
 export default {
@@ -16,34 +17,12 @@ export default {
     pvOption: {},
     vvOption: {},
     uvOption: {},
-    salesData: [],
-    searchData: [],
-    offlineData: [],
-    offlineChartData: [],
-    salesTypeData: [],
-    salesTypeDataOnline: [],
-    salesTypeDataOffline: [],
     radarData: [],
     loading: false,
+    userdata:{},
   },
 
   effects: {
-    *fetch(_, { call, put }) {
-      const response = yield call(fakeChartData);
-      yield put({
-        type: 'save',
-        payload: response,
-      });
-    },
-    *fetchSalesData(_, { call, put }) {
-      const response = yield call(fakeChartData);
-      yield put({
-        type: 'save',
-        payload: {
-          salesData: response.salesData,
-        },
-      });
-    },
     *fetchTotalData(_, { call, put }) {
       const res = yield call(getTotalDate);
       yield put({
@@ -71,6 +50,16 @@ export default {
         },
       });
     },
+    *fetchUserData(_,{call,put}){
+        const res = yield call(getUserData)
+        console.log(res)
+        yield put({
+          type:'save',
+          payload:{
+            userdata:res
+          }
+        })
+    }
   },
 
   reducers: {
@@ -89,16 +78,14 @@ export default {
     },
     clear() {
       return {
-        visitData: [],
-        visitData2: [],
-        salesData: [],
-        searchData: [],
-        offlineData: [],
-        offlineChartData: [],
-        salesTypeData: [],
-        salesTypeDataOnline: [],
-        salesTypeDataOffline: [],
+        totaldata: {},
+        detaildata: [],
+        ipOption: {},
+        pvOption: {},
+        vvOption: {},
+        uvOption: {},
         radarData: [],
+        loading: false,
       };
     },
   },

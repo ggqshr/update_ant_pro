@@ -837,9 +837,13 @@ const dataperhour = {
     uvData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
 };
+
+const userdata ={"newuser":23,"activeuser":33,"silenceuser":2,"totaluser":109}
+
 export default {
   'GET /api/fake_chart_data': getFakeChartData,
   'GET /api/totaldata': totaldata,
   'GET /api/detaildata': detaildata,
   'GET /api/dataperhour': dataperhour,
+  "GET /api/userdata": userdata,
 };

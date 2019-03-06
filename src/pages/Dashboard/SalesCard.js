@@ -37,24 +37,7 @@ const SalesCard = memo(
             <div className={styles.salesExtraWrap}>
               <div className={styles.salesExtra}>
                 <h3>小时指标</h3>
-                {/* <a className={isActive('today')} onClick={() => selectDate('today')}>
-                  <FormattedMessage id="app.analysis.all-day" defaultMessage="All Day" />
-                </a>
-                <a className={isActive('week')} onClick={() => selectDate('week')}>
-                  <FormattedMessage id="app.analysis.all-week" defaultMessage="All Week" />
-                </a>
-                <a className={isActive('month')} onClick={() => selectDate('month')}>
-                  <FormattedMessage id="app.analysis.all-month" defaultMessage="All Month" />
-                </a>
-                <a className={isActive('year')} onClick={() => selectDate('year')}>
-                  <FormattedMessage id="app.analysis.all-year" defaultMessage="All Year" />
-                </a> */}
               </div>
-              {/* <RangePicker
-                value={rangePickerValue}
-                onChange={handleRangePickerChange}
-                style={{ width: 256 }}
-              /> */}
             </div>
           }
           size="large"
@@ -78,31 +61,6 @@ const SalesCard = memo(
                   <ReactEcharts option={uvOptions} />;
                 </div>
               </Col>
-              {/* <Col xl={8} lg={12} md={12} sm={24} xs={24}>
-                <div className={styles.salesRank}>
-                  <h4 className={styles.rankingTitle}>
-                    <FormattedMessage
-                      id="app.analysis.visits-ranking"
-                      defaultMessage="Visits Ranking"
-                    />
-                  </h4>
-                  <ul className={styles.rankingList}>
-                    {rankingListData.map((item, i) => (
-                      <li key={item.title}>
-                        <span
-                          className={`${styles.rankingItemNumber} ${i < 3 ? styles.active : ''}`}
-                        >
-                          {i + 1}
-                        </span>
-                        <span className={styles.rankingItemTitle} title={item.title}>
-                          {item.title}
-                        </span>
-                        <span>{numeral(item.total).format('0,0')}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Col> */}
             </Row>
           </TabPane>
 

@@ -232,3 +232,8 @@ export function getPvOption(todayData, yestodayData, sevenData, monthData) {
     ],
   };
 }
+
+
+export async function getUserData(){
+  return request("/api/userdata")
+}

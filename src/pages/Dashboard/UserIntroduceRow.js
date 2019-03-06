@@ -16,12 +16,12 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 };
 
-const IntroduceRow = memo(({ loading, totaldata }) => (
+const IntroduceRow = memo(({ loading, userdata }) => (
   <Row gutter={24}>
     <Col {...topColResponsiveProps}>
       <ChartCard
         bordered={false}
-        title={<FormattedMessage id="浏览量（PV）" defaultMessage="浏览量（PV）" />}
+        title={<FormattedMessage id="新增访客" defaultMessage="新增访客" />}
         // action={
         //   // <Tooltip
         //   //   title={<FormattedMessage id="app.analysis.introduce" defaultMessage="Introduce" />}
@@ -30,7 +30,7 @@ const IntroduceRow = memo(({ loading, totaldata }) => (
         //   // </Tooltip>
         // }
         loading={loading}
-        total={totaldata.pV}
+        total={userdata.newuser}
         footer={
           <Field
           // label={'日访问量'}
@@ -54,7 +54,7 @@ const IntroduceRow = memo(({ loading, totaldata }) => (
       <ChartCard
         bordered={false}
         loading={loading}
-        title={<FormattedMessage id="访客数（UV）" defaultMessage="访客数（UV）" />}
+        title={<FormattedMessage id="活跃用户" defaultMessage="活跃用户" />}
         // action={
         //   <Tooltip
         //     title={<FormattedMessage id="app.analysis.introduce" defaultMessage="Introduce" />}
@@ -62,7 +62,7 @@ const IntroduceRow = memo(({ loading, totaldata }) => (
         //     <Icon type="info-circle-o" />
         //   </Tooltip>
         // }
-        total={totaldata.uV}
+        total={userdata.activeuser}
         footer={
           <Field
           // label={<FormattedMessage id="app.analysis.day-visits" defaultMessage="Daily Visits" />}
@@ -86,7 +86,7 @@ const IntroduceRow = memo(({ loading, totaldata }) => (
       <ChartCard
         bordered={false}
         loading={loading}
-        title={'访问次数'}
+        title={'沉默用户'}
         // action={
         //   <Tooltip
         //     title={<FormattedMessage id="app.analysis.introduce" defaultMessage="Introduce" />}
@@ -94,7 +94,7 @@ const IntroduceRow = memo(({ loading, totaldata }) => (
         //     <Icon type="info-circle-o" />
         //   </Tooltip>
         // }
-        total={totaldata.vV}
+        total={userdata.silenceuser}
         footer={
           <Field
           // label={
@@ -123,7 +123,7 @@ const IntroduceRow = memo(({ loading, totaldata }) => (
       <ChartCard
         loading={loading}
         bordered={false}
-        title={'独立IP'}
+        title={'总用户'}
         // action={
         //   <Tooltip
         //     title={<FormattedMessage id="app.analysis.introduce" defaultMessage="Introduce" />}
@@ -131,7 +131,7 @@ const IntroduceRow = memo(({ loading, totaldata }) => (
         //     <Icon type="info-circle-o" />
         //   </Tooltip>
         // }
-        total={totaldata.iP}
+        total={userdata.totaluser}
         footer={
           <div style={{ whiteSpace: 'nowrap', overflow: 'hidden' }}>
             <Trend style={{ marginRight: 16 }}>
