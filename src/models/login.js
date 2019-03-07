@@ -4,6 +4,7 @@ import { fakeAccountLogin, getFakeCaptcha } from '@/services/api';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
+import router from 'umi/router';
 
 export default {
   namespace: 'login',
@@ -15,32 +16,33 @@ export default {
 
   effects: {
     *login({ payload }, { call, put }) {
-      console.log('logineffect');
-      const response = yield call(fakeAccountLogin, payload); //从后端拿数据的时候就设置权限的字段
-      yield put({
-        type: 'changeLoginStatus',
-        payload: response,
-      });
+      // console.log('logineffect');
+      // const response = yield call(fakeAccountLogin, payload); //从后端拿数据的时候就设置权限的字段
+      // yield put({
+      //   type: 'changeLoginStatus',
+      //   payload: response,
+      // });
       // Login successfully
-      if (response.status === 'ok') {
-        reloadAuthorized();
-        const urlParams = new URL(window.location.href);
-        const params = getPageQuery();
-        let { redirect } = params;
-        if (redirect) {
-          const redirectUrlParams = new URL(redirect);
-          if (redirectUrlParams.origin === urlParams.origin) {
-            redirect = redirect.substr(urlParams.origin.length);
-            if (redirect.match(/^\/.*#/)) {
-              redirect = redirect.substr(redirect.indexOf('#') + 1);
-            }
-          } else {
-            window.location.href = redirect;
-            return;
-          }
-        }
-        yield put(routerRedux.replace(redirect || '/'));
-      }
+      // if (response.status === 'ok') {
+      //   reloadAuthorized();
+      //   const urlParams = new URL(window.location.href);
+      //   const params = getPageQuery();
+      //   let { redirect } = params;
+      //   if (redirect) {
+      //     const redirectUrlParams = new URL(redirect);
+      //     if (redirectUrlParams.origin === urlParams.origin) {
+      //       redirect = redirect.substr(urlParams.origin.length);
+      //       if (redirect.match(/^\/.*#/)) {
+      //         redirect = redirect.substr(redirect.indexOf('#') + 1);
+      //       }
+      //     } else {
+      //       window.location.href = redirect;
+      //       return;
+      //     }
+      //   }
+      //   yield put(routerRedux.replace(redirect || '/'));
+      // }
+      router.push("/dashboard/analysis")
     },
 
     *getCaptcha({ payload }, { call }) {
