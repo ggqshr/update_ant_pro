@@ -322,7 +322,7 @@ function getFakeCaptcha(req, res) {
 }
 const data1 = {data:[8, 0, 5, 0, 0, 1], datalabel:["1天后", "2天后", "3天后", "4天后","5天后", "6天后"]}
 const data2 = {"buy":[{"pro_buy_num":3,"pro_click_num":23,"pro_id":9,"pro_name":"产品9","rank":1},{"pro_buy_num":12,"pro_click_num":30,"pro_id":1,"pro_name":"产品1","rank":2},{"pro_buy_num":12,"pro_click_num":234,"pro_id":6,"pro_name":"产品6","rank":3},{"pro_buy_num":32,"pro_click_num":345,"pro_id":4,"pro_name":"产品4","rank":4},{"pro_buy_num":45,"pro_click_num":102,"pro_id":3,"pro_name":"产品3","rank":5},{"pro_buy_num":87,"pro_click_num":390,"pro_id":2,"pro_name":"产品2","rank":6},{"pro_buy_num":89,"pro_click_num":145,"pro_id":7,"pro_name":"产品7","rank":7},{"pro_buy_num":100,"pro_click_num":139,"pro_id":8,"pro_name":"产品8","rank":8},{"pro_buy_num":165,"pro_click_num":587,"pro_id":5,"pro_name":"产品5","rank":9},{"pro_buy_num":657,"pro_click_num":876,"pro_id":10,"pro_name":"产品10","rank":10}],"click":[{"pro_buy_num":3,"pro_click_num":23,"pro_id":9,"pro_name":"产品9","rank":1},{"pro_buy_num":12,"pro_click_num":30,"pro_id":1,"pro_name":"产品1","rank":2},{"pro_buy_num":45,"pro_click_num":102,"pro_id":3,"pro_name":"产品3","rank":3},{"pro_buy_num":100,"pro_click_num":139,"pro_id":8,"pro_name":"产品8","rank":4},{"pro_buy_num":89,"pro_click_num":145,"pro_id":7,"pro_name":"产品7","rank":5},{"pro_buy_num":12,"pro_click_num":234,"pro_id":6,"pro_name":"产品6","rank":6},{"pro_buy_num":32,"pro_click_num":345,"pro_id":4,"pro_name":"产品4","rank":7},{"pro_buy_num":87,"pro_click_num":390,"pro_id":2,"pro_name":"产品2","rank":8},{"pro_buy_num":165,"pro_click_num":587,"pro_id":5,"pro_name":"产品5","rank":9},{"pro_buy_num":657,"pro_click_num":876,"pro_id":10,"pro_name":"产品10","rank":10}]}
-
+const data3={"deep":{"data":["0","0","0","53.3333","18.1667","11.75","0"],"datalabel":["2019-03-01","2019-03-02","2019-03-03","2019-03-04","2019-03-05","2019-03-06","2019-03-07"]},"oldandnew":["5","2"]}
 export default {
   'GET /api/project/notice': getNotice,
   'GET /api/activities': getActivities,
@@ -336,5 +336,6 @@ export default {
   'POST /api/fake_list': postFakeList,
   'GET /api/captcha': getFakeCaptcha,
   "GET /api/report/remain":data1,
-  "GET /api/product/data":data2
+  "GET /api/product/data":data2,
+  "GET /api/visitor/data":data3
 };

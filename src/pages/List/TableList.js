@@ -100,7 +100,7 @@ class TableList extends PureComponent {
     const { dispatch } = this.props;
     dispatch({
       type: 'rule/fetchAddData',
-      payload:{"acdate":"","platform":"","referdomain":"","useragent":""}
+      payload:{"acdate":[],"platform":"","referdomain":"","useragent":""}
     });
   }
 
@@ -141,7 +141,7 @@ class TableList extends PureComponent {
       formValues: {},
     });
     dispatch({
-      type: 'rule/fetch',
+      type: 'rule/fetchAddData',
       payload: {},
     });
   };

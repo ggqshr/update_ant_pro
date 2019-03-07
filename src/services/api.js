@@ -508,3 +508,34 @@ export function getRemainOpt(data){
 export async function getProductData(){
   return request("/api/product/data")
 }
+
+export async function getVisitorData(){
+  return request("/api/visitor/data");
+}
+
+export function getnewAndoldOpt(data){
+  return {
+    toolbox: {
+        show : true,
+        feature : {
+            saveAsImage : {show: true}
+        }
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['新用户', '老用户']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: data,
+        type: 'bar'
+    }]
+};
+
+
+}
