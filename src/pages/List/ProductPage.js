@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'dva';
 import moment from 'moment';
 import router from 'umi/router';
+import { ChartCard, MiniArea, MiniBar, MiniProgress, Field, TagCloud } from '@/components/Charts';
 import {
   Row,
   Col,
@@ -23,6 +24,7 @@ import {
   Radio,
   Table,
 } from 'antd';
+import GridContent from '@/components/PageHeaderWrapper/GridContent';
 import StandardTable from '@/components/StandardTable';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
@@ -60,47 +62,47 @@ class TableList extends PureComponent {
 
   columns = [
     {
-      title: '访问日期',
-      dataIndex: 'acdate',
+      title: '排名',
+      dataIndex: 'rank',
     },
     {
-      title: '访问时间',
-      dataIndex: 'actime',
+      title: '产品ID',
+      dataIndex: 'pro_id',
     },
     {
-      title: '操作系统',
-      dataIndex: 'platform',
+      title: '产品名称',
+      dataIndex: 'pro_name',
     },
     {
-      title: '累积数量',
-      dataIndex: 'pnum',
-      sorter: (a,c)=>{return (a>c?-1:1)},
+      title: '产品点击数',
+      dataIndex: 'pro_click_num',
+      sorter: (a, c) => { return (a > c ? -1 : 1) },
+    },
+  ];
+  columns1 = [
+    {
+      title: '排名',
+      dataIndex: 'rank',
     },
     {
-      title: '来源域名',
-      dataIndex: 'referdomain',
+      title: '产品ID',
+      dataIndex: 'pro_id',
     },
     {
-      title: '累计数量',
-      dataIndex: 'dnum',
-      sorter: (a,c)=>{return (a>c?-1:1)},
+      title: '产品名称',
+      dataIndex: 'pro_name',
     },
     {
-      title: '浏览器类型',
-      dataIndex: 'useragent',
-    },
-    {
-      title: '累计数量',
-      dataIndex: 'anum',
-      sorter: (a,c)=>{return (a>c?-1:1)},
+      title: '产品购买数',
+      dataIndex: 'pro_buy_num',
+      sorter: (a, c) => { return (a > c ? -1 : 1) },
     },
   ];
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'rule/fetchAddData',
-      payload:{"acdate":"","platform":"","referdomain":"","useragent":""}
+      type: 'rule/fetchProduct',
     });
   }
 
@@ -244,12 +246,12 @@ class TableList extends PureComponent {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
           <Col md={8} sm={24}>
             <FormItem label="日期区间">
-            {/* 对应要查询的字段名称 */}
+              {/* 对应要查询的字段名称 */}
               {getFieldDecorator('acdate')(
-              <RangePicker
-              onChange={this.handleRangePickerChange}
-              style={{ width: 256 }}
-            />
+                <RangePicker
+                  onChange={this.handleRangePickerChange}
+                  style={{ width: 256 }}
+                />
               )}
             </FormItem>
           </Col>
@@ -281,10 +283,10 @@ class TableList extends PureComponent {
           <Col md={8} sm={24}>
             <FormItem label="日期区间">
               {getFieldDecorator('acdate')(
-              <RangePicker
-              onChange={this.handleRangePickerChange}
-              style={{ width: 256 }}
-            />
+                <RangePicker
+                  onChange={this.handleRangePickerChange}
+                  style={{ width: 256 }}
+                />
               )}
             </FormItem>
           </Col>
@@ -297,7 +299,7 @@ class TableList extends PureComponent {
           </Col>
           <Col md={8} sm={24}>
             <FormItem label="来源域名">
-              {getFieldDecorator('referdomain')( <Input placeholder="请输入" />)}
+              {getFieldDecorator('referdomain')(<Input placeholder="请输入" />)}
             </FormItem>
           </Col>
         </Row>
@@ -334,7 +336,7 @@ class TableList extends PureComponent {
 
   render() {
     const {
-      rule: { data,allData },
+      rule: { data, allData, productdata },
       loading,
     } = this.props;
     const { selectedRows, modalVisible, updateModalVisible, stepFormValues } = this.state;
@@ -355,24 +357,35 @@ class TableList extends PureComponent {
     };
     return (
       // <PageHeaderWrapper title="查询表格">
-        <Card bordered={false}>
-          <div className={styles.tableList}>
-            <div className={styles.tableListForm}>{this.renderForm()}</div>
-            <div className={styles.tableListOperator}>
-            </div>
+      <GridContent>
+        <Row style={{margin:10}}>
+        <ChartCard title={"产品点击Top10"} footer={
+             <Table
+             // selectedRows={selectedRows}
+             rowKey={(rec) => { return (rec.pro_id) }}
+             loading={loading}
+             dataSource={productdata.click}
+             columns={this.columns}
+           // onSelectRow={this.handleSelectRows}
+           // onChange={this.handleStandardTableChange}
+           />
+          } />
+        </Row>
+        <Row style={{margin:10}}>
+          <ChartCard title={"产品购买Top10"} footer={
             <Table
               // selectedRows={selectedRows}
-              rowKey={(rec)=>{return (rec.acdate+rec.actime+rec.platform+rec.pnum+rec.anum)}}
+              rowKey={(rec) => { return (rec.pro_id) }}
               loading={loading}
-              dataSource={allData.list}
-              columns={this.columns}
-              // onSelectRow={this.handleSelectRows}
-              // onChange={this.handleStandardTableChange}
+              dataSource={productdata.buy}
+              columns={this.columns1}
+            // onSelectRow={this.handleSelectRows}
+            // onChange={this.handleStandardTableChange}
             />
-          </div>
-        </Card>
-        
-      // </PageHeaderWrapper>
+          } />
+          
+        </Row>
+      </GridContent>
     );
   }
 }

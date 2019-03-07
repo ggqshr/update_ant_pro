@@ -504,3 +504,7 @@ export function getRemainOpt(data){
 };
 
 }
+
+export async function getProductData(){
+  return request("/api/product/data")
+}

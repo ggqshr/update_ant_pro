@@ -70,6 +70,11 @@ export default [
             component: './Dashboard/RemainUser',
           },
           {
+            path: '/dashboard/ProductPage',
+            name: '产品分析',
+            component: './List/ProductPage',
+          },
+          {
             path: '/dashboard/monitor',
             name: 'monitor',
             component: './Dashboard/Monitor',

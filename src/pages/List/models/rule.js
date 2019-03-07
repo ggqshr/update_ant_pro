@@ -1,4 +1,4 @@
-import { queryRule, removeRule, addRule, updateRule,getAgentData } from '@/services/api';
+import { queryRule, removeRule, addRule, updateRule,getAgentData,getProductData } from '@/services/api';
 
 export default {
   namespace: 'rule',
@@ -8,6 +8,7 @@ export default {
       list:[],
       pagination:{}
     },
+    productdata:[]
     // data: {
     //   list: [],
     //   pagination: {},
@@ -22,30 +23,6 @@ export default {
         payload: response,
       });
     },
-    *add({ payload, callback }, { call, put }) {
-      const response = yield call(addRule, payload);
-      yield put({
-        type: 'save',
-        payload: response,
-      });
-      if (callback) callback();
-    },
-    *remove({ payload, callback }, { call, put }) {
-      const response = yield call(removeRule, payload);
-      yield put({
-        type: 'save',
-        payload: response,
-      });
-      if (callback) callback();
-    },
-    *update({ payload, callback }, { call, put }) {
-      const response = yield call(updateRule, payload);
-      yield put({
-        type: 'save',
-        payload: response,
-      });
-      if (callback) callback();
-    },
     *fetchAddData({payload}, { call, put }) {
       const response = yield call(getAgentData, payload);
       yield put({
@@ -53,6 +30,14 @@ export default {
         payload: response,
       });
     },
+    *fetchProduct(_,{call,put}){
+        const res = yield call(getProductData)
+        yield put({
+          type: 'savePro',
+          payload: res,
+        });
+
+    }
   },
 
   reducers: {
@@ -63,5 +48,11 @@ export default {
         allData:alldata,
       };
     },
+    savePro(state,{payload}){
+      return {
+        ...state,
+        productdata:payload
+      }
+    }
   },
 };
