@@ -320,6 +320,7 @@ const getActivities = [
 function getFakeCaptcha(req, res) {
   return res.json('captcha-xxx');
 }
+const data1 = {data:[8, 0, 5, 0, 0, 1], datalabel:["1天后", "2天后", "3天后", "4天后","5天后", "6天后"]}
 
 export default {
   'GET /api/project/notice': getNotice,
@@ -333,5 +334,5 @@ export default {
   'GET /api/fake_list': getFakeList,
   'POST /api/fake_list': postFakeList,
   'GET /api/captcha': getFakeCaptcha,
-  
+  "GET /api/report/remain":data1,
 };

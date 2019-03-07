@@ -1,13 +1,17 @@
-import { queryRule, removeRule, addRule, updateRule } from '@/services/api';
+import { queryRule, removeRule, addRule, updateRule,getAgentData } from '@/services/api';
 
 export default {
   namespace: 'rule',
 
   state: {
-    data: {
-      list: [],
-      pagination: {},
+    allData:{
+      list:[],
+      pagination:{}
     },
+    // data: {
+    //   list: [],
+    //   pagination: {},
+    // },
   },
 
   effects: {
@@ -42,13 +46,21 @@ export default {
       });
       if (callback) callback();
     },
+    *fetchAddData({payload}, { call, put }) {
+      const response = yield call(getAgentData, payload);
+      yield put({
+        type: 'save',
+        payload: response,
+      });
+    },
   },
 
   reducers: {
-    save(state, action) {
+    save(state, {payload}) {
+      const alldata = {list:payload,pagination:{}}
       return {
         ...state,
-        data: action.payload,
+        allData:alldata,
       };
     },
   },

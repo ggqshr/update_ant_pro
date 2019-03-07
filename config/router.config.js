@@ -65,6 +65,11 @@ export default [
             component: './Dashboard/UserPic',
           },
           {
+            path: '/dashboard/RemainUser',
+            name: '存留用户分析',
+            component: './Dashboard/RemainUser',
+          },
+          {
             path: '/dashboard/monitor',
             name: 'monitor',
             component: './Dashboard/Monitor',

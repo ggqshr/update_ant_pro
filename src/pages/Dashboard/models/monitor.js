@@ -1,10 +1,11 @@
-import { queryTags } from '@/services/api';
+import { queryTags,getRemainOpt,getRemainData } from '@/services/api';
 
 export default {
   namespace: 'monitor',
 
   state: {
     tags: [],
+    remainOpt:{}
   },
 
   effects: {
@@ -15,6 +16,14 @@ export default {
         payload: response.list,
       });
     },
+    *fetchRemainData(_,{call,put}){
+      const res = yield call(getRemainData)
+      console.log(res)
+      yield put({
+        type:"saveRemain",
+        payload:res
+      })
+    }
   },
 
   reducers: {
@@ -24,5 +33,12 @@ export default {
         tags: action.payload,
       };
     },
+    saveRemain(state,{payload}){
+      const opt = getRemainOpt(payload)
+      return {
+        ...state,
+        remainOpt:opt
+      }
+    }
   },
 };

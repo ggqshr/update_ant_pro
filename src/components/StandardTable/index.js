@@ -63,27 +63,27 @@ class StandardTable extends PureComponent {
 
   render() {
     const { selectedRowKeys, needTotalList } = this.state;
-    const { data = {}, rowKey, ...rest } = this.props;
+    const { data = {}, rowKey,datas,...rest} = this.props;
     const { list = [], pagination } = data;
 
-    const paginationProps = {
-      showSizeChanger: true,
-      showQuickJumper: true,
-      ...pagination,
-    };
+    // const paginationProps = {
+    //   showSizeChanger: true,
+    //   showQuickJumper: true,
+    //   ...pagination,
+    // };
 
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.handleRowSelectChange,
-      getCheckboxProps: record => ({
-        disabled: record.disabled,
-      }),
-    };
-
+    // const rowSelection = {
+    //   selectedRowKeys,
+    //   onChange: this.handleRowSelectChange,
+    //   getCheckboxProps: record => ({
+    //     disabled: record.disabled,
+    //   }),
+    // };
+    console.log({...rest})
     return (
       <div className={styles.standardTable}>
         <div className={styles.tableAlert}>
-          <Alert
+          {/* <Alert
             message={
               <Fragment>
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
@@ -103,14 +103,13 @@ class StandardTable extends PureComponent {
             }
             type="info"
             showIcon
-          />
+          /> */}
         </div>
         <Table
           rowKey={rowKey || 'key'}
-          rowSelection={rowSelection}
-          dataSource={list}
-          pagination={paginationProps}
-          onChange={this.handleTableChange}
+          // rowSelection={rowSelection}
+          dataSource={data.list}
+          // onChange={this.handleTableChange}
           {...rest}
         />
       </div>

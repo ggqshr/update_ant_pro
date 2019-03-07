@@ -169,6 +169,11 @@ export function getOption(res) {
 
 export function getPvOption(todayData, yestodayData, sevenData, monthData) {
   return {
+    toolbox: {
+      feature: {
+          saveAsImage: {}
+      }
+  },
     legend: {
       data: ['今天', '昨天', '7天前', '30天前'],
     },
@@ -256,6 +261,11 @@ export async function getRateData2(payload) {
 
 export function getRateOption(data) {
   return {
+    toolbox: {
+      feature: {
+          saveAsImage: {}
+      }
+  },
     legend: {
       data: ['新增用户', '活跃用户'],
     },
@@ -290,6 +300,11 @@ export function getRateOption(data) {
 
 export function getOldAndNewOpt(data) {
   return {
+    toolbox: {
+      feature: {
+          saveAsImage: {}
+      }
+  },
     legend: {},
     tooltip: {},
     dataset: {
@@ -313,6 +328,11 @@ export async function getAllData() {
 export function getBingOpt(datalabel, data) {
   return {
     tooltip: {
+      toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
       trigger: 'item',
       formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
@@ -353,6 +373,11 @@ export function getBingOpt(datalabel, data) {
 
 export function getLineOpt(datalabel, data) {
   return {
+    toolbox: {
+      feature: {
+          saveAsImage: {}
+      }
+  },
     tooltip: {},
     xAxis: {
       type: 'category',
@@ -396,6 +421,11 @@ export function getfunnelOpt(datalabel,data){
         data: datalabel
     },
     calculable: true,
+    toolbox: {
+      feature: {
+          saveAsImage: {}
+      }
+  },
     series: [
         {
             name:'漏斗图',
@@ -435,6 +465,42 @@ export function getfunnelOpt(datalabel,data){
             data: data,
         }
     ]
+};
+
+}
+
+export async function getAgentData(data){
+  return request("/api/agen/data", {
+    method: 'POST',
+    body: data,
+  }
+  )
+}
+export async function getRemainData(){
+  return request("/api/report/remain");
+}
+
+export function getRemainOpt(data){
+  return {
+    toolbox: {
+      feature: {
+          saveAsImage: {}
+      }
+  },
+    xAxis: {
+        type: 'category',
+        data: data.datalabel
+    },
+    tooltip: {
+      trigger: 'axis'
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: data.data,
+        type: 'line'
+    }]
 };
 
 }
