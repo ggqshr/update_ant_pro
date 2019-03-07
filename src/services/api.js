@@ -305,3 +305,136 @@ export function getOldAndNewOpt(data) {
     ]
   }
 }
+
+export async function getAllData() {
+  return request("/api/userpic/getalldata");
+}
+
+export function getBingOpt(datalabel, data) {
+  return {
+    tooltip: {
+      trigger: 'item',
+      formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+      orient: 'vertical',
+      x: 'left',
+      data: datalabel
+    },
+    series: [
+      {
+        name: '访问来源',
+        type: 'pie',
+        radius: ['50%', '70%'],
+        avoidLabelOverlap: false,
+        label: {
+          normal: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            show: true,
+            textStyle: {
+              fontSize: '30',
+              fontWeight: 'bold'
+            }
+          }
+        },
+        labelLine: {
+          normal: {
+            show: false
+          }
+        },
+        data: data
+      }
+    ]
+  };
+}
+
+export function getLineOpt(datalabel, data) {
+  return {
+    tooltip: {},
+    xAxis: {
+      type: 'category',
+      data: datalabel
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value} 人'
+      }
+    },
+    series: [{
+      name: "年龄分布",
+      data: data,
+      type: 'bar',
+      markPoint: {
+        data: [
+          { type: 'max', name: '最多人数' },
+          { type: 'min', name: '最小人数' }
+        ]
+      },
+      markLine: {
+        data: [
+          { type: 'average', name: '平均值' }
+        ]
+      }
+    }]
+  }
+
+}
+
+export function getfunnelOpt(datalabel,data){
+  return {
+    title: {
+        subtext:"排名从上到下递增"
+    },
+    tooltip: {
+        trigger: 'item',
+    },
+    legend: {
+        data: datalabel
+    },
+    calculable: true,
+    series: [
+        {
+            name:'漏斗图',
+            type:'funnel',
+            left: '10%',
+            top: 60,
+            //x2: 80,
+            bottom: 60,
+            width: '100%',
+            // height: {totalHeight} - y - y2,
+            min: 0,
+            max: 100,
+            minSize: '40%',
+            maxSize: '150%',
+            sort: 'descending',
+            gap: 2,
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            labelLine: {
+                length: 10,
+                lineStyle: {
+                    width: 1,
+                    type: 'solid'
+                }
+            },
+            itemStyle: {
+                borderColor: '#fff',
+                borderWidth: 1
+            },
+            emphasis: {
+                label: {
+                    fontSize: 20
+                }
+            },
+            data: data,
+        }
+    ]
+};
+
+}

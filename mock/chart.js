@@ -875,7 +875,7 @@ const ratedata = {
   ]
 }
 const oldAndNewData = [["user", "新会员", "老会员"], ["2019-02-25", 9, 255], ["2019-02-28", 3, 128], ["2019-03-04", 6, 320], ["2019-03-05", 4, 109]]
-
+const allData = {"education":[{"name":"未知","value":0},{"name":"初中","value":1},{"name":"高中","value":1},{"name":"本科","value":3},{"name":"专科","value":1}],"peoplenum":[{"name":"男生","value":4},{"name":"女生","value":3}],"employee":[{"name":"个体","value":2},{"name":"教师","value":1},{"name":"无","value":2},{"name":"程序员","value":1},{"name":"销售","value":1}],"age":[0,2,2,1,1,0,1]}
 export default {
   'GET /api/fake_chart_data': getFakeChartData,
   'GET /api/totaldata': totaldata,
@@ -884,4 +884,5 @@ export default {
   "GET /api/userdata": userdata,
   "POST /api/ratedata": ratedata,
   "POST /api/oldandnewdata": oldAndNewData,
+  "GET /api/userpic/getalldata": allData,
 };
