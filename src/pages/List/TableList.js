@@ -62,6 +62,10 @@ class TableList extends PureComponent {
     {
       title: '访问日期',
       dataIndex: 'acdate',
+      sorter:(a,c)=>{
+        var moment = require("moment")
+        return moment(a.acdate).subtract(moment(c.acdate))
+      }
     },
     {
       title: '访问时间',
