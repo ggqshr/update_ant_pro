@@ -72,27 +72,28 @@ class TableList extends PureComponent {
       dataIndex: 'platform',
     },
     {
-      title: '累积数量',
+      title: '操作系统累积数量',
       dataIndex: 'pnum',
-      sorter: (a,c)=>{return (a>c?-1:1)},
+      sorter: (a,c)=>{return parseInt(a.pnum)-parseInt(c.pnum)},
     },
     {
       title: '来源域名',
       dataIndex: 'referdomain',
     },
     {
-      title: '累计数量',
+      title: '来源域名累计数量',
       dataIndex: 'dnum',
-      sorter: (a,c)=>{return (a>c?-1:1)},
+      sorter: (a,c)=>{return parseInt(a.dnum)-parseInt(c.dnum)},
     },
     {
       title: '浏览器类型',
       dataIndex: 'useragent',
+      render:(text)=>{return text.slice(0,20)}
     },
     {
-      title: '累计数量',
+      title: '浏览器类型累计数量',
       dataIndex: 'anum',
-      sorter: (a,c)=>{return (a>c?-1:1)},
+      sorter: (a,c)=>{return parseInt(a.anum)-parseInt(c.anum)},
     },
   ];
 
@@ -362,7 +363,7 @@ class TableList extends PureComponent {
             </div>
             <Table
               // selectedRows={selectedRows}
-              rowKey={(rec)=>{return (rec.acdate+rec.actime+rec.platform+rec.pnum+rec.anum)}}
+              rowKey={(rec)=>{return (rec.id)}}
               loading={loading}
               dataSource={allData.list}
               columns={this.columns}
