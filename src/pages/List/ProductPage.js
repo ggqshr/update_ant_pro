@@ -64,6 +64,7 @@ class TableList extends PureComponent {
     {
       title: '排名',
       dataIndex: 'rank',
+      sorter:(a,c)=>{return (a.rank-c.rank)}
     },
     {
       title: '产品ID',
@@ -76,13 +77,14 @@ class TableList extends PureComponent {
     {
       title: '产品点击数',
       dataIndex: 'pro_click_num',
-      sorter: (a, c) => { return (a > c ? -1 : 1) },
+      sorter: (a, c) => { return (a.pro_click_num > c.pro_click_num ? -1 : 1) },
     },
   ];
   columns1 = [
     {
       title: '排名',
       dataIndex: 'rank',
+      sorter:(a,c)=>{return (a.rank-c.rank)}
     },
     {
       title: '产品ID',
@@ -95,7 +97,7 @@ class TableList extends PureComponent {
     {
       title: '产品购买数',
       dataIndex: 'pro_buy_num',
-      sorter: (a, c) => { return (a > c ? -1 : 1) },
+      sorter: (a, c) => { return (a.pro_buy_num > c.pro_buy_num ? -1 : 1) },
     },
   ];
 
