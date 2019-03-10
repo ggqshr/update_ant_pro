@@ -21,6 +21,8 @@ export default {
     pvOption: {},
     vvOption: {},
     uvOption: {},
+    avgTime:{},
+    jumpOpt:{},
     rateopt: {},
     radarData: [],
     loading: false,

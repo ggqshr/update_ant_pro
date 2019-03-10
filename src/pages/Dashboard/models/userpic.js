@@ -1,4 +1,4 @@
-import { getAllData, getBingOpt, getLineOpt, getfunnelOpt, getRemainOpt, getnewAndoldOpt, getVisitorData } from '@/services/api';
+import { getAllData, getBingOpt, getLineOpt, getfunnelOpt, getRemainOpt, getnewAndoldOpt, getVisitorData,getAvgDeepOpt } from '@/services/api';
 
 export default {
   namespace: 'userPic',
@@ -49,7 +49,7 @@ export default {
       };
     },
     save(state, { payload }) {
-      const deepOpt = getRemainOpt(payload.deep);
+      const deepOpt = getAvgDeepOpt(payload.deep);
       const newOpt = getnewAndoldOpt(payload.oldandnew)
       return {
         ...state,

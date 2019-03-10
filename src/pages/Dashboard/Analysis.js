@@ -82,6 +82,8 @@ class Analysis extends Component {
       vvOption,
       pvOption,
       ipOption,
+      avgTime,
+      jumpOpt,
     } = chart;
     let salesPieData;
     return (
@@ -101,6 +103,8 @@ class Analysis extends Component {
             uvOptions={uvOption}
             ipOptions={ipOption}
             vvOptions={vvOption}
+            jumpOpt={jumpOpt}
+            avgTime={avgTime}
           />
         </Suspense>
         <div className={styles.twoColLayout}>

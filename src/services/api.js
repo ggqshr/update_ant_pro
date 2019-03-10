@@ -144,42 +144,64 @@ export function getOption(res) {
     res.today.pvData,
     res.yestoday.pvData,
     res.beforseven.pvData,
-    res.beformonth.pvData
+    res.beformonth.pvData,
+    "对应时间的PV量"
   );
   const uvOption = getPvOption(
     res.today.uvData,
     res.yestoday.uvData,
     res.beforseven.uvData,
-    res.beformonth.uvData
+    res.beformonth.uvData,
+    "对应时间的UV量"
   );
   const vvOption = getPvOption(
     res.today.vvData,
     res.yestoday.vvData,
     res.beforseven.vvData,
-    res.beformonth.vvData
+    res.beformonth.vvData,
+    "对应时间的VV量"
   );
   const ipOption = getPvOption(
     res.today.ipData,
     res.yestoday.ipData,
     res.beforseven.ipData,
-    res.beformonth.ipData
+    res.beformonth.ipData,
+    "对应时间的IP量"
   );
-  return { pvOption, uvOption, vvOption, ipOption };
+  const jumpOpt = getPvOption(
+    res.today.jumprate,
+    res.yestoday.jumprate,
+    res.beforseven.jumprate,
+    res.beformonth.jumprate,
+    "对应时间的跳出率"
+  )
+  const avgTime = getPvOption(
+    res.today.avgtime,
+    res.yestoday.avgtime,
+    res.beforseven.avgtime,
+    res.beformonth.avgtime,
+    "对应时间的平均访问时间"
+  )
+  return { pvOption, uvOption, vvOption, ipOption,jumpOpt,avgTime };
 }
 
-export function getPvOption(todayData, yestodayData, sevenData, monthData) {
+export function getPvOption(todayData, yestodayData, sevenData, monthData, label) {
   return {
     toolbox: {
       feature: {
-          saveAsImage: {}
+        saveAsImage: {}
       }
-  },
+    },
     legend: {
       data: ['今天', '昨天', '7天前', '30天前'],
     },
     xAxis: {
       type: 'category',
       boundaryGap: false,
+      axisLabel: {
+        interval: 1
+      },
+      name: "时间",
       data: [
         '00:00',
         '01:00',
@@ -209,6 +231,7 @@ export function getPvOption(todayData, yestodayData, sevenData, monthData) {
     },
     yAxis: {
       type: 'value',
+      name: label
     },
     tooltip: {
       trigger: 'axis',
@@ -263,9 +286,9 @@ export function getRateOption(data) {
   return {
     toolbox: {
       feature: {
-          saveAsImage: {}
+        saveAsImage: {}
       }
-  },
+    },
     legend: {
       data: ['新增用户', '活跃用户'],
     },
@@ -273,12 +296,14 @@ export function getRateOption(data) {
       type: 'category',
       boundaryGap: false,
       data: data.rangdates,
+      name: "对应日期",
     },
     yAxis: {
       type: 'value',
       axisLabel: {
         formatter: '{value} %'
       },
+      name: "新增用户和活跃用户占总用户比例",
     },
     tooltip: {
       trigger: 'axis'
@@ -302,9 +327,9 @@ export function getOldAndNewOpt(data) {
   return {
     toolbox: {
       feature: {
-          saveAsImage: {}
+        saveAsImage: {}
       }
-  },
+    },
     legend: {},
     tooltip: {},
     dataset: {
@@ -330,9 +355,9 @@ export function getBingOpt(datalabel, data) {
     tooltip: {
       toolbox: {
         feature: {
-            saveAsImage: {}
+          saveAsImage: {}
         }
-    },
+      },
       trigger: 'item',
       formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
@@ -375,9 +400,9 @@ export function getLineOpt(datalabel, data) {
   return {
     toolbox: {
       feature: {
-          saveAsImage: {}
+        saveAsImage: {}
       }
-  },
+    },
     tooltip: {},
     xAxis: {
       type: 'category',
@@ -409,133 +434,164 @@ export function getLineOpt(datalabel, data) {
 
 }
 
-export function getfunnelOpt(datalabel,data){
+export function getfunnelOpt(datalabel, data) {
   return {
     title: {
-        subtext:"排名从上到下递增"
+      subtext: "排名从上到下递增"
     },
     tooltip: {
-        trigger: 'item',
+      trigger: 'item',
     },
     legend: {
-        data: datalabel
+      data: datalabel
     },
     calculable: true,
     toolbox: {
       feature: {
-          saveAsImage: {}
+        saveAsImage: {}
       }
-  },
+    },
     series: [
-        {
-            name:'漏斗图',
-            type:'funnel',
-            left: '10%',
-            top: 60,
-            //x2: 80,
-            bottom: 60,
-            width: '100%',
-            // height: {totalHeight} - y - y2,
-            min: 0,
-            max: 100,
-            minSize: '40%',
-            maxSize: '150%',
-            sort: 'descending',
-            gap: 2,
-            label: {
-                show: true,
-                position: 'inside'
-            },
-            labelLine: {
-                length: 10,
-                lineStyle: {
-                    width: 1,
-                    type: 'solid'
-                }
-            },
-            itemStyle: {
-                borderColor: '#fff',
-                borderWidth: 1
-            },
-            emphasis: {
-                label: {
-                    fontSize: 20
-                }
-            },
-            data: data,
-        }
+      {
+        name: '漏斗图',
+        type: 'funnel',
+        left: '10%',
+        top: 60,
+        //x2: 80,
+        bottom: 60,
+        width: '100%',
+        // height: {totalHeight} - y - y2,
+        min: 0,
+        max: 100,
+        minSize: '40%',
+        maxSize: '150%',
+        sort: 'descending',
+        gap: 2,
+        label: {
+          show: true,
+          position: 'inside'
+        },
+        labelLine: {
+          length: 10,
+          lineStyle: {
+            width: 1,
+            type: 'solid'
+          }
+        },
+        itemStyle: {
+          borderColor: '#fff',
+          borderWidth: 1
+        },
+        emphasis: {
+          label: {
+            fontSize: 20
+          }
+        },
+        data: data,
+      }
     ]
-};
+  };
 
 }
 
-export async function getAgentData(data){
+export async function getAgentData(data) {
   return request("/api/agen/data", {
     method: 'POST',
     body: data,
   }
   )
 }
-export async function getRemainData(){
+export async function getRemainData() {
   return request("/api/report/remain");
 }
 
-export function getRemainOpt(data){
+export function getRemainOpt(data) {
   return {
     toolbox: {
       feature: {
-          saveAsImage: {}
+        saveAsImage: {}
       }
-  },
+    },
     xAxis: {
-        type: 'category',
-        data: data.datalabel
+      type: 'category',
+      data: data.datalabel
     },
     tooltip: {
       trigger: 'axis'
     },
     yAxis: {
-        type: 'value'
+      type: 'value'
     },
     series: [{
-        data: data.data,
-        type: 'line'
+      data: data.data,
+      type: 'line'
     }]
-};
-
+  };
 }
 
-export async function getProductData(){
+export function getAvgDeepOpt(data) {
+  return {
+    toolbox: {
+      feature: {
+        saveAsImage: {}
+      }
+    },
+    title: {
+      text:"该指标代表用户平均访问的深度，越深代表用户的粘性越大"
+    },
+    xAxis: {
+      type: 'category',
+      data: data.datalabel,
+      name: "日期"
+    },
+    tooltip: {
+      trigger: 'axis',
+      formatter: "日期:{b}<br/>平均访问深度为{c}"
+    },
+    yAxis: {
+      type: 'value',
+      name: "用户平均访问深度（PV/UV）"
+    },
+    series: [{
+      data: data.data,
+      type: 'line'
+    }]
+  };
+}
+
+export async function getProductData() {
   return request("/api/product/data")
 }
 
-export async function getVisitorData(){
+export async function getVisitorData() {
   return request("/api/visitor/data");
 }
 
-export function getnewAndoldOpt(data){
+export function getnewAndoldOpt(data) {
   return {
     toolbox: {
-        show : true,
-        feature : {
-            saveAsImage : {show: true}
-        }
+      show: true,
+      feature: {
+        saveAsImage: { show: true }
+      }
     },
-    tooltip : {
-        trigger: 'axis'
+    tooltip: {
+      trigger: 'axis',
     },
     xAxis: {
-        type: 'category',
-        data: ['新用户', '老用户']
+      type: 'category',
+      data: ['新用户', '老用户']
     },
     yAxis: {
-        type: 'value'
+      type: 'value',
+      name: "人数",
     },
     series: [{
-        data: data,
-        type: 'bar'
+      data: data,
+      type: 'bar',
+      barWidth: 150
     }]
-};
+  };
 
 
 }

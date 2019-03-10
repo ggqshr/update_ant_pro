@@ -29,6 +29,8 @@ const SalesCard = memo(
     uvOptions,
     ipOptions,
     vvOptions,
+    avgTime,
+    jumpOpt
   }) => (
     <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
       <div className={styles.salesCard}>
@@ -91,7 +93,7 @@ const SalesCard = memo(
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
                   {/* 画图位置 */}
-                  <ReactEcharts option={pvOptions} />;
+                  <ReactEcharts option={jumpOpt} />;
                 </div>
               </Col>
             </Row>
@@ -102,7 +104,7 @@ const SalesCard = memo(
               <Col xl={24} lg={12} md={12} sm={24} xs={24}>
                 <div className={styles.salesBar}>
                   {/* 画图位置 */}
-                  <ReactEcharts option={pvOptions} />;
+                  <ReactEcharts option={avgTime} />;
                 </div>
               </Col>
             </Row>
