@@ -68,15 +68,15 @@ class TableList extends PureComponent {
     },
     {
       title: '产品ID',
-      dataIndex: 'pro_id',
+      dataIndex: 'proId',
     },
     {
       title: '产品名称',
-      dataIndex: 'pro_name',
+      dataIndex: 'proName',
     },
     {
       title: '产品点击数',
-      dataIndex: 'pro_click_num',
+      dataIndex: 'proClickNum',
       sorter: (a, c) => { return (a.pro_click_num > c.pro_click_num ? -1 : 1) },
     },
   ];
@@ -88,15 +88,15 @@ class TableList extends PureComponent {
     },
     {
       title: '产品ID',
-      dataIndex: 'pro_id',
+      dataIndex: 'proId',
     },
     {
       title: '产品名称',
-      dataIndex: 'pro_name',
+      dataIndex: 'proName',
     },
     {
       title: '产品购买数',
-      dataIndex: 'pro_buy_num',
+      dataIndex: 'proBuyNum',
       sorter: (a, c) => { return (a.pro_buy_num > c.pro_buy_num ? -1 : 1) },
     },
   ];
