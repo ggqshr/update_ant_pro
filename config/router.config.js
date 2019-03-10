@@ -72,7 +72,12 @@ export default [
             path: '/event/ProductPage',
             name: '产品分析',
             component: './List/ProductPage',
-          }
+          },
+          {
+            path: '/event/UserAction',
+            name: '用户操作分析',
+            component: './List/UserAction',
+          },
         ]
       },
       // {

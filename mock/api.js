@@ -323,6 +323,7 @@ function getFakeCaptcha(req, res) {
 const data1 = {data:[8, 0, 5, 0, 0, 1], datalabel:["1天后", "2天后", "3天后", "4天后","5天后", "6天后"]}
 const data2 = {"buy":[{"pro_buy_num":3,"pro_click_num":23,"pro_id":9,"pro_name":"产品9","rank":1},{"pro_buy_num":12,"pro_click_num":30,"pro_id":1,"pro_name":"产品1","rank":2},{"pro_buy_num":12,"pro_click_num":234,"pro_id":6,"pro_name":"产品6","rank":3},{"pro_buy_num":32,"pro_click_num":345,"pro_id":4,"pro_name":"产品4","rank":4},{"pro_buy_num":45,"pro_click_num":102,"pro_id":3,"pro_name":"产品3","rank":5},{"pro_buy_num":87,"pro_click_num":390,"pro_id":2,"pro_name":"产品2","rank":6},{"pro_buy_num":89,"pro_click_num":145,"pro_id":7,"pro_name":"产品7","rank":7},{"pro_buy_num":100,"pro_click_num":139,"pro_id":8,"pro_name":"产品8","rank":8},{"pro_buy_num":165,"pro_click_num":587,"pro_id":5,"pro_name":"产品5","rank":9},{"pro_buy_num":657,"pro_click_num":876,"pro_id":10,"pro_name":"产品10","rank":10}],"click":[{"pro_buy_num":3,"pro_click_num":23,"pro_id":9,"pro_name":"产品9","rank":1},{"pro_buy_num":12,"pro_click_num":30,"pro_id":1,"pro_name":"产品1","rank":2},{"pro_buy_num":45,"pro_click_num":102,"pro_id":3,"pro_name":"产品3","rank":3},{"pro_buy_num":100,"pro_click_num":139,"pro_id":8,"pro_name":"产品8","rank":4},{"pro_buy_num":89,"pro_click_num":145,"pro_id":7,"pro_name":"产品7","rank":5},{"pro_buy_num":12,"pro_click_num":234,"pro_id":6,"pro_name":"产品6","rank":6},{"pro_buy_num":32,"pro_click_num":345,"pro_id":4,"pro_name":"产品4","rank":7},{"pro_buy_num":87,"pro_click_num":390,"pro_id":2,"pro_name":"产品2","rank":8},{"pro_buy_num":165,"pro_click_num":587,"pro_id":5,"pro_name":"产品5","rank":9},{"pro_buy_num":657,"pro_click_num":876,"pro_id":10,"pro_name":"产品10","rank":10}]}
 const data3={"deep":{"data":["0","0","0","53.3333","18.1667","11.75","0"],"datalabel":["2019-03-01","2019-03-02","2019-03-03","2019-03-04","2019-03-05","2019-03-06","2019-03-07"]},"oldandnew":["5","2"]}
+const data4 = [{"action_id":2,"action_name":"加入购物车","date0":256,"date1":112,"date2":234,"date3":126,"date4":112,"date5":234,"date6":126},{"action_id":5,"action_name":"test","date0":0,"date1":0,"date2":0,"date3":0,"date4":238,"date5":0,"date6":0},{"action_id":3,"action_name":"登陆","date0":367,"date1":476,"date2":285,"date3":486,"date4":334,"date5":223,"date6":23},{"action_id":0,"action_name":"查看证券产品详情","date0":127,"date1":235,"date2":276,"date3":301,"date4":301,"date5":276,"date6":238},{"action_id":4,"action_name":"开始付款","date0":264,"date1":126,"date2":267,"date3":126,"date4":126,"date5":223,"date6":1123},{"action_id":1,"action_name":"搜索证券商品","date0":312,"date1":408,"date2":359,"date3":299,"date4":408,"date5":359,"date6":299}]
 export default {
   'GET /api/project/notice': getNotice,
   'GET /api/activities': getActivities,
@@ -337,5 +338,6 @@ export default {
   'GET /api/captcha': getFakeCaptcha,
   "GET /api/report/remain":data1,
   "GET /api/product/data":data2,
-  "GET /api/visitor/data":data3
+  "GET /api/visitor/data":data3,
+  "GET /api/product/actiondata":data4,
 };

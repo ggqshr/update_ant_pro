@@ -1,4 +1,4 @@
-import { queryRule, removeRule, addRule, updateRule,getAgentData,getProductData } from '@/services/api';
+import { queryRule, removeRule, addRule, updateRule,getAgentData,getProductData,getActionData } from '@/services/api';
 
 export default {
   namespace: 'rule',
@@ -8,7 +8,8 @@ export default {
       list:[],
       pagination:{}
     },
-    productdata:[]
+    productdata:[],
+    actionData:[],
     // data: {
     //   list: [],
     //   pagination: {},
@@ -36,7 +37,13 @@ export default {
           type: 'savePro',
           payload: res,
         });
-
+    },
+    *fetchAllActionData(_,{call,put}){
+      const res = yield call(getActionData);
+      yield put({
+        type:"saveAction",
+        payload:res,
+      })
     }
   },
 
@@ -53,6 +60,12 @@ export default {
         ...state,
         productdata:payload
       }
-    }
+    },
+    saveAction(state,{payload}){
+      return {
+        ...state,
+        actionData:payload
+      }
+    },
   },
 };

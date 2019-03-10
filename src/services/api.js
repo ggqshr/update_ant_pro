@@ -595,3 +595,7 @@ export function getnewAndoldOpt(data) {
 
 
 }
+
+export async function getActionData(){
+  return request("/api/product/actiondata")
+}
