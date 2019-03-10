@@ -599,3 +599,49 @@ export function getnewAndoldOpt(data) {
 export async function getActionData(){
   return request("/api/product/actiondata")
 }
+
+export async function getNewAndActiveRemain(){
+  return request("/api/report/newandactiveremain")
+}
+
+export function getRemainOpt2(data,name) {
+  var moment = require("moment");
+  const datalabel = [
+    moment().add(-6, 'days').format("YYYY-MM-DD"),
+    moment().add(-5, 'days').format("YYYY-MM-DD"),
+    moment().add(-4, 'days').format("YYYY-MM-DD"),
+    moment().add(-3, 'days').format("YYYY-MM-DD"),
+    moment().add(-2, 'days').format("YYYY-MM-DD"),
+    moment().add(-1, 'days').format("YYYY-MM-DD"),
+    moment().format("YYYY-MM-DD"),
+  ]
+  return {
+    toolbox: {
+      feature: {
+        saveAsImage: {}
+      }
+    },
+    xAxis: {
+      type: 'category',
+      data: datalabel
+    },
+    tooltip: {
+      trigger: 'axis',
+      formatter: (parm)=>{
+        const d = moment(parm[0].axisValue).diff(moment().add(-6, 'days').format("YYYY-MM-DD"),'day')
+        return d+1+"日留存:"+parm[0].data+"%"
+    }
+    },
+    yAxis: {
+      type: 'value',
+      name:name,
+      axisLabel: {
+        formatter: '{value} %'
+      }
+    },
+    series: [{
+      data: data,
+      type: 'line'
+    }]
+  };
+}

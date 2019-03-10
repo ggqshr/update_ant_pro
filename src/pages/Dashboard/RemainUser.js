@@ -25,6 +25,9 @@ class Analysis extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
+    dispatch({
+      type:'monitor/fetchNewAndActiveRemainData'
+    })
     this.reqRef = requestAnimationFrame(() => {
       dispatch({
         type: 'monitor/fetchRemainData',
@@ -56,14 +59,35 @@ class Analysis extends Component {
       style: { marginBottom: 14 },
     };
     const { monitor, loading } = this.props;
-    const { remainOpt} = monitor;
+    const { remainOpt,newOpt,activeOpt} = monitor;
+    console.log(newOpt,activeOpt)
     let salesPieData;
     return (
       <GridContent>
         <Row gutter={24}>
           <Col {...topColResponsiveProps} xl={24}>
-            <ChartCard title={"7日存留分析"} footer={
+            <ChartCard title={"7日存留分析"} 
+            loading={loading.effects['monitor/fetchRemainData']}
+            footer={
       <ReactEcharts option={remainOpt}></ReactEcharts>
+            } />
+          </Col>
+        </Row>
+        <Row gutter={24}>
+          <Col {...topColResponsiveProps} xl={24}>
+            <ChartCard title={"近七日新增用户留存比例"} 
+            loading={loading.effects['monitor/fetchNewAndActiveRemainData']}
+            footer={
+      <ReactEcharts option={newOpt}></ReactEcharts>
+            } />
+          </Col>
+        </Row>
+        <Row gutter={24}>
+          <Col {...topColResponsiveProps} xl={24}>
+            <ChartCard title={"近七日活跃用户留存比例"} 
+            loading={loading.effects['monitor/fetchNewAndActiveRemainData']}
+            footer={
+      <ReactEcharts option={activeOpt}></ReactEcharts>
             } />
           </Col>
         </Row>
