@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { stringify } from 'qs';
-import { fakeAccountLogin, getFakeCaptcha } from '@/services/api';
+import { fakeAccountLogin, getFakeCaptcha,login } from '@/services/api';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
@@ -16,12 +16,14 @@ export default {
 
   effects: {
     *login({ payload }, { call, put }) {
-      // console.log('logineffect');
-      // const response = yield call(fakeAccountLogin, payload); //从后端拿数据的时候就设置权限的字段
-      // yield put({
-      //   type: 'changeLoginStatus',
-      //   payload: response,
-      // });
+      const response = yield call(login, payload); //从后端拿数据的时候就设置权限的字段
+      yield put({  
+        type: 'changeLoginStatus',
+        payload: response,
+      });
+      if(response.status === 'ok'){
+        router.push("/dashboard/analysis")
+      }
       // Login successfully
       // if (response.status === 'ok') {
       //   reloadAuthorized();
@@ -42,7 +44,7 @@ export default {
       //   }
       //   yield put(routerRedux.replace(redirect || '/'));
       // }
-      router.push("/dashboard/analysis")
+      
     },
 
     *getCaptcha({ payload }, { call }) {
@@ -71,6 +73,7 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
+      console.log(payload)
       setAuthority(payload.currentAuthority); //设置当前用户的权限
       return {
         ...state,

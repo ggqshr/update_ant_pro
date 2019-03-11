@@ -649,3 +649,11 @@ export function getRemainOpt2(data,name) {
 export function getExcel(){
   return request("/api/getexcel")
 }
+
+export function login(data){
+  return request("/api/login/login", {
+    method: 'POST',
+    body: data,
+  }
+  )
+}
