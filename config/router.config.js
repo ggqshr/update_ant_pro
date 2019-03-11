@@ -80,6 +80,18 @@ export default [
           },
         ]
       },
+      {
+        path: "/export",
+        name: '报表导出',
+        icon: "form",
+        routes: [
+          {
+            path: '/export/export',
+            name: '事件分析报表',
+            component: './Dashboard/ExportData',
+          },
+        ]
+      },
       // {
       //   path: '/dashboard',
       //   name: 'dashboard',

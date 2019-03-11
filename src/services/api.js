@@ -645,3 +645,7 @@ export function getRemainOpt2(data,name) {
     }]
   };
 }
+
+export function getExcel(){
+  return request("/api/getexcel")
+}
