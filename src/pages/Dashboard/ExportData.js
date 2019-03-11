@@ -8,9 +8,7 @@ import PageLoading from '@/components/PageLoading';
 import { AsyncLoadBizCharts } from '@/components/Charts/AsyncLoadBizCharts';
 import ReactEcharts from 'echarts-for-react';
 import { ChartCard, MiniArea, MiniBar, MiniProgress, Field, TagCloud } from '@/components/Charts';
-import {
-  getExcel
-} from '@/services/api';
+import { getExcel } from '@/services/api';
 
 @connect(({ userPic, loading }) => ({
   userPic,
@@ -60,17 +58,9 @@ class Analysis extends Component {
             <ChartCard title={"报表导出"} bordered={false} footer={
               <Button onClick={this.handleClick} >导出</Button>
             } />
-
           </Col>
-          {/* <Col {...topColResponsiveProps}>
-            <ChartCard title={"报表导出"} bordered={false} footer={
-              <a href="/api/getexcel" download="filename.xls">Download file</a>
-            } />
-
-          </Col> */}
         </Row>
       </GridContent>
-
     );
   }
 }
