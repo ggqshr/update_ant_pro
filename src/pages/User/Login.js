@@ -154,12 +154,12 @@ class LoginPage extends Component {
             />
           </Tab> */}
           <div>
-            <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
-              <FormattedMessage id="app.login.remember-me" />
-            </Checkbox>
-            <a style={{ float: 'right' }} onClick={() => this.handleShowTip()}>
+            {/* <a style={{ float: 'right' }} onClick={() => this.handleShowTip()}>
               <FormattedMessage id="app.login.forgot-password" />
             </a>
+            <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
+              <FormattedMessage id="app.login.remember-me" />
+            </Checkbox> */}
           </div>
           <Submit loading={submitting}>
             <FormattedMessage id="app.login.login" />
@@ -169,9 +169,9 @@ class LoginPage extends Component {
             <Icon type="alipay-circle" className={styles.icon} theme="outlined" />
             <Icon type="taobao-circle" className={styles.icon} theme="outlined" />
             <Icon type="weibo-circle" className={styles.icon} theme="outlined" /> */}
-            <Link className={styles.register} to="/user/register">
+            {/* <Link className={styles.register} to="/user/register">
               <FormattedMessage id="app.login.signup" />
-            </Link>
+            </Link> */}
           </div>
         </Login>
       </div>
