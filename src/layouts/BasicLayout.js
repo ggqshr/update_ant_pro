@@ -46,13 +46,13 @@ const query = {
 };
 class BasicLayout extends React.Component {
   // 判断是否登陆，如果没登陆就退回登录页
-  // shouldComponentUpdate() {
-  //   if (!this.props.loginCheck) {
-  //     router.push('/user/login');
-  //   } else {
-  //     return true;
-  //   }
-  // }
+  shouldComponentUpdate() {
+    if (!this.props.loginCheck) {
+      router.push('/user/login');
+    } else {
+      return true;
+    }
+  }
   componentDidMount() {
     const {
       dispatch,
