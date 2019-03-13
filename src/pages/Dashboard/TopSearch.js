@@ -36,8 +36,8 @@ const columns = [
   },
   {
     title: '跳出率',
-    dataIndex: 'jumprate',
-    key: 'jumprate',
+    dataIndex: 'jumprates',
+    key: 'jumprates',
   },
   {
     title: '平均在线时长',
